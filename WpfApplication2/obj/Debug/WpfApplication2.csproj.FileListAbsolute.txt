@@ -1,0 +1,19 @@
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\MainWindow.baml
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page1.baml
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page2.baml
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\MainWindow.g.cs
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page1.g.cs
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page2.g.cs
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\App.g.cs
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2_MarkupCompile.cache
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2.g.resources
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\B temple 1.jpg
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Jungle[1].jpg
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\WpfApplication2.exe
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\WpfApplication2.pdb
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2.exe
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2.pdb
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Interop.DXTRANSLib.dll
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Interop.MediaPlayer.dll
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2.csproj.ResolveComReference.cache

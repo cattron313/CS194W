@@ -1,0 +1,24 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="WpfApplication2.Page2"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Width="640" Height="480"
+	WindowWidth="640" WindowHeight="480">
+	<Page.Resources>
+		<Storyboard x:Key="LoadSetting"/>
+	</Page.Resources>
+	<Page.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource LoadSetting}"/>
+		</EventTrigger>
+	</Page.Triggers>
+
+	<Grid x:Name="LayoutRoot" Loaded="setBackground">
+		<Grid.Background>
+			<ImageBrush Stretch="None"/>
+		</Grid.Background>
+	</Grid>
+</Page>
