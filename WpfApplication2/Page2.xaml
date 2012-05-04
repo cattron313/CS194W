@@ -6,7 +6,7 @@
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
 	Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480">
+	WindowWidth="640" WindowHeight="480" Loaded="setBackground">
 	<Page.Resources>
 		<Storyboard x:Key="LoadSetting"/>
 	</Page.Resources>
@@ -15,10 +15,13 @@
 			<BeginStoryboard Storyboard="{StaticResource LoadSetting}"/>
 		</EventTrigger>
 	</Page.Triggers>
-
-	<Grid x:Name="LayoutRoot" Loaded="setBackground">
-		<Grid.Background>
-			<ImageBrush Stretch="None"/>
-		</Grid.Background>
-	</Grid>
+    <Canvas Height="443" Name="controls" Width="604">
+        <Canvas Name="buildAScene" Height="443" Width="604">
+            <Frame Canvas.Left="12" Canvas.Top="12" Height="419" Name="frame1" Width="578" />
+        </Canvas>
+        <Button Canvas.Left="12" Canvas.Top="12" Content="Record" Height="44" Width="75.5" />
+        <Button Canvas.Left="87" Canvas.Top="12" Content="Pause" Height="44" Width="70.773" />
+        <Button Canvas.Left="156.773" Canvas.Top="12" Content="Finished" Height="44" Width="77" />
+        <Button Canvas.Left="12" Canvas.Top="388" Content="Toy Box" FontWeight="Bold" Height="42.5" Width="57.5" />
+    </Canvas>
 </Page>

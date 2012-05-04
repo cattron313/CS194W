@@ -10,9 +10,8 @@ namespace WpfApplication2
         private List<Scene> sceneList;
         private String name;
 
-        public Story(String storyName)
+        public Story()
         {
-            name = storyName;
             sceneList = new List<Scene>();
         }
 

@@ -45,16 +45,18 @@
 		</EventTrigger>
 	</Page.Triggers>
 
-	<Grid x:Name="LayoutRoot">
-		<TextBlock Height="86" Margin="95,20,95,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center"><Run Text="Pick A Setting"/><LineBreak/></TextBlock>
-		<Border x:Name="JungleB" BorderBrush="Black" BorderThickness="5" Margin="236,176.333,244,143.667">
-			<Image x:Name="Jungle" Margin="0,0,-0.094,-0.25" Source="pack://siteoforigin:,,,/Jungle[1].jpg" Stretch="Fill" MouseUp="Jungle_MouseUp"/>
-		</Border>
-		<Border x:Name="ShipB" BorderBrush="Black" BorderThickness="5" Margin="31,176.333,0,143.667" HorizontalAlignment="Left" Width="160">
-			<Image x:Name="Shipwreck" Margin="0,0,0.049,-0.052" Source="Wreck on amangasette.jpg" Stretch="Fill"/>
-		</Border>
-		<Border x:Name="TempleB" BorderBrush="Black" BorderThickness="5" Margin="0,176.333,38,143.667" HorizontalAlignment="Right" Width="160">
-			<Image x:Name="Temple" Source="pack://siteoforigin:,,,/B temple 1.jpg" Stretch="Fill"/>
-		</Border>
-	</Grid>
+    <Canvas Name="MainCanvas" Height="480" Width="640">
+        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" />
+        <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
+        <TextBlock Height="86" Margin="95,20,95,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center"><Run Text="Pick A Setting"/><LineBreak/></TextBlock>
+        <Border x:Name="JungleB" BorderBrush="Black" BorderThickness="5" Height="122.5" Canvas.Left="423" Canvas.Top="156.333" Width="183.327">
+            <Image x:Name="Jungle" Margin="0,0,-0.094,-0.25" Source="Jungle[1].jpg" Stretch="Fill" MouseUp="selectSetting"/>
+        </Border>
+        <Border x:Name="ShipB" BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Left" Width="160" Canvas.Left="45" Canvas.Top="156.333">
+            <Image x:Name="Shipwreck" Margin="0,0,0.049,-0.052" Source="Wreck on amangasette.jpg" Stretch="Fill" MouseUp="selectSetting"/>
+        </Border>
+        <Border x:Name="TempleB" BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Right" Width="160" Canvas.Left="238" Canvas.Top="156.333">
+            <Image x:Name="Temple" Source="/WpfApplication2;component/B%20temple%201.jpg" Stretch="Fill" MouseUp="selectSetting"/>
+        </Border>
+    </Canvas>
 </Page>

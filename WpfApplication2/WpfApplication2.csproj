@@ -37,7 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SlimDX, Version=2.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=AMD64" />
+    <Reference Include="Coding4Fun.Kinect.Wpf">
+      <HintPath>E:\CS247-P3\P3StarterCode FINAL\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.45, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -61,8 +64,10 @@
     </ApplicationDefinition>
     <Compile Include="Character.cs" />
     <Compile Include="Prop.cs" />
+    <Compile Include="RecordVideo.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Setting.cs" />
+    <Compile Include="SkeletonController.cs" />
     <Compile Include="Story.cs" />
     <Compile Include="StoryTimeController.cs" />
     <Page Include="MainWindow.xaml">
@@ -100,12 +105,12 @@
     <None Include="Application.ico">
       <Visible>false</Visible>
     </None>
-    <None Include="B temple 1.jpg">
+    <Resource Include="B temple 1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Jungle[1].jpg">
+    </Resource>
+    <Resource Include="Jungle[1].jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Wreck on amangasette.jpg" />
