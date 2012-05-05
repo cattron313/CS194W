@@ -42,7 +42,7 @@ namespace WpfApplication2
             SetupKinect();
 
             st = new StoryTimeController(this);
-            currentController = new SkeletonController(this);
+            currentController = new SkeletonController(this, st);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

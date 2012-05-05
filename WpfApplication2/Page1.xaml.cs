@@ -55,6 +55,7 @@ namespace WpfApplication2
 
                 SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
                 SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
+                currentController.processSkeletonFramePage1(skeleton, this.MainCanvas);
                 //set positions on our joints of interest (already defined as Ellipse objects in the xaml)
                 /*SetEllipsePosition(headEllipse, skeleton.Joints[JointID.Head]);
                 SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);

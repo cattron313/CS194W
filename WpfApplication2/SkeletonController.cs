@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -16,10 +17,12 @@ namespace WpfApplication2
     public class SkeletonController
     {
         private MainWindow window;
+        private IStory del;
 
-        public SkeletonController(MainWindow win)
+        public SkeletonController(MainWindow win, IStory stDelegate)
         {
             window = win;
+            del = stDelegate;
         }
 
         //This function will be implemented by you in the subclass files provided.
@@ -29,13 +32,42 @@ namespace WpfApplication2
         //and manipulate its state and position, as well as hide/show it (see class defn. below).
         //It is indexed from 1, thus you can retrieve an individual target with the expression
         //targets[3], which would retrieve the target labeled "3" on screen.
-        public virtual void processSkeletonFrame(SkeletonData skeleton)
+        public virtual void processSkeletonFramePage1(SkeletonData skeleton, Canvas canvas)
         {
-            int i = 0;
+            Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
+            Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
 
             /*Example implementation*/
 
-            
+            foreach (object uiElm in canvas.Children) 
+            {
+                if (uiElm is Border)
+                {
+                    if (eitherHandIsOverImage((Border)uiElm, canvas, leftHand, rightHand)) 
+                    {
+                        selectSetting(((Image)((Border)uiElm).Child).Name);
+                        break;
+                    }
+                }
+            }
+        }
+
+        private bool eitherHandIsOverImage(Border img, Canvas c, Joint lh, Joint rh)
+        {
+            bool isAHandOverImage = (lh.Position.Y > Canvas.GetTop(img) && lh.Position.Y < Canvas.GetTop(img) + img.ActualHeight && 
+                lh.Position.X > Canvas.GetLeft(img) && lh.Position.X < Canvas.GetLeft(img) + img.ActualWidth);
+            if (!isAHandOverImage) isAHandOverImage = rh.Position.Y > Canvas.GetTop(img) && rh.Position.Y < Canvas.GetTop(img) + img.ActualHeight &&
+                rh.Position.X > Canvas.GetLeft(img) && rh.Position.X < Canvas.GetLeft(img) + img.ActualWidth;
+            return isAHandOverImage;
+        }
+
+        private void selectSetting(String name)
+        {
+            Frame recordAScene = new Frame();
+            recordAScene.Source = new Uri("Page2.xaml", UriKind.Relative);
+            recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
+            Application.Current.MainWindow.Content = recordAScene;
+            del.addSettingToScene(name);
         }
 
         //This is called when the controller becomes active. This allows you to place your targets and do any 
