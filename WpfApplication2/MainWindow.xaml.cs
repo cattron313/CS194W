@@ -65,7 +65,6 @@ namespace WpfApplication2
                 ((Page1)e.Content).del = st;
                 ((Page1)e.Content).nui = nui;
                 ((Page1)e.Content).currentController = currentController;
-                MainWindow.nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
             }
             else if (((Frame)sender).Source.ToString() == "Page2.xaml")
             {
@@ -113,7 +112,7 @@ namespace WpfApplication2
                 //Canvas.SetZIndex(image1, -10000);
             }
         }
-
+        /*
         void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
 
@@ -127,9 +126,10 @@ namespace WpfApplication2
 
             if (skeleton != null)
             {
-
+                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
+                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
                 //set positions on our joints of interest (already defined as Ellipse objects in the xaml)
-                /*SetEllipsePosition(headEllipse, skeleton.Joints[JointID.Head]);
+                SetEllipsePosition(headEllipse, skeleton.Joints[JointID.Head]);
                 SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
                 SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
                 SetEllipsePosition(shoulderCenter, skeleton.Joints[JointID.ShoulderCenter]);
@@ -150,7 +150,7 @@ namespace WpfApplication2
                 SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
                 SetEllipsePosition(kneeLeft, skeleton.Joints[JointID.KneeLeft]);
                 SetEllipsePosition(kneeRight, skeleton.Joints[JointID.KneeRight]);
-                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);*/
+                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);
                 currentController.processSkeletonFrame(skeleton);
 
             }
@@ -170,8 +170,7 @@ namespace WpfApplication2
             }
         }
 
-
-
+        */
         private void Window_Closed(object sender, EventArgs e)
         {
             //Cleanup

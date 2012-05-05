@@ -31,6 +31,7 @@ namespace WpfApplication2
         //targets[3], which would retrieve the target labeled "3" on screen.
         public virtual void processSkeletonFrame(SkeletonData skeleton)
         {
+            int i = 0;
 
             /*Example implementation*/
 

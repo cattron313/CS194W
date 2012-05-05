@@ -26,7 +26,7 @@ namespace WpfApplication2
 			this.InitializeComponent();
 
 			// Insert code required on object creation below this point.
-            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+            
 		}
 
         private void selectSetting(object sender, MouseButtonEventArgs e)
@@ -38,8 +38,8 @@ namespace WpfApplication2
             Application.Current.MainWindow.Content = recordAScene;
             del.addSettingToScene(i.Name);
         }
-
-        void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+    
+        private void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
 
             SkeletonFrame allSkeletons = e.SkeletonFrame;
@@ -77,16 +77,16 @@ namespace WpfApplication2
                 SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
                 SetEllipsePosition(kneeLeft, skeleton.Joints[JointID.KneeLeft]);
                 SetEllipsePosition(kneeRight, skeleton.Joints[JointID.KneeRight]);
-                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);*/
-                currentController.processSkeletonFrame(skeleton);
+                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);
+                currentController.processSkeletonFrame(skeleton);*/
 
             }
         }
 
-        public float k_xMaxJointScale = 1.5f;
-        public float k_yMaxJointScale = 1.5f;
+        static public float k_xMaxJointScale = 1.5f;
+        static public float k_yMaxJointScale = 1.5f;
 
-        private void SetEllipsePosition(Ellipse ellipse, Joint joint)
+        static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {
             var scaledJoint = joint.ScaleTo(640, 480, k_xMaxJointScale, k_yMaxJointScale);
 
@@ -99,6 +99,12 @@ namespace WpfApplication2
                 ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
             }
         }
+
+        private void setUpKinect(object sender, RoutedEventArgs e)
+        {
+            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+        }
+
 
 	}
 }

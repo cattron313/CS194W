@@ -6,7 +6,7 @@
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
 	Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480">
+	WindowWidth="640" WindowHeight="480" Loaded="setUpKinect">
 	<Page.Resources>
 		<Storyboard x:Key="ShipwreckHover">
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ShipB">
@@ -46,7 +46,7 @@
 	</Page.Triggers>
 
     <Canvas Name="MainCanvas" Height="480" Width="640">
-        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" />
+        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
         <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
         <TextBlock Height="86" Margin="95,20,95,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center"><Run Text="Pick A Setting"/><LineBreak/></TextBlock>
         <Border x:Name="JungleB" BorderBrush="Black" BorderThickness="5" Height="122.5" Canvas.Left="423" Canvas.Top="156.333" Width="183.327">
