@@ -6,7 +6,7 @@
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
 	Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480" Loaded="setUpKinect">
+	WindowWidth="640" WindowHeight="480" Loaded="setUpKinect" Unloaded="removeNUIEventHandler">
 	<Page.Resources>
 		<Storyboard x:Key="ShipwreckHover">
 			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ShipB">

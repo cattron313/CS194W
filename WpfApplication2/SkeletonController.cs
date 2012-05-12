@@ -70,6 +70,49 @@ namespace WpfApplication2
             del.addSettingToScene(name);
         }
 
+        public virtual void processSkeletonFramePage2(SkeletonData skeleton, Canvas canvas)
+        {
+            Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
+            Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
+
+            foreach (object uiElm in canvas.Children) 
+            {
+                if (uiElm is Rectangle)
+                {
+                    if (eitherHandIsOverButton((Rectangle)uiElm, canvas, leftHand, rightHand)) 
+                    {
+                       if (String.Compare(((Rectangle)uiElm).Name, "Record") == 0)
+                       {
+
+
+                       }
+                       else if (String.Compare(((Rectangle)uiElm).Name, "Pause") == 0)
+                       {
+
+
+                       }
+                       else if (String.Compare(((Rectangle)uiElm).Name, "End Scene") == 0)
+                       {
+
+                       }
+                       else if(String.Compare(((Rectangle)uiElm).Name, "Toy Box") == 0)
+                       {
+                           Console.WriteLine("Add Character");
+                       }
+                    }
+                }
+            }
+        }
+
+        public bool eitherHandIsOverButton(Rectangle r, Canvas c, Joint lh, Joint rh)
+        {
+            bool isAHandOverButton = (lh.Position.Y > Canvas.GetTop(r) && lh.Position.Y < Canvas.GetTop(r) + r.ActualHeight &&
+                lh.Position.X > Canvas.GetLeft(r) && lh.Position.X < Canvas.GetLeft(r) + r.ActualWidth);
+            if (!isAHandOverButton) isAHandOverButton = rh.Position.Y > Canvas.GetTop(r) && rh.Position.Y < Canvas.GetTop(r) + r.ActualHeight &&
+                rh.Position.X > Canvas.GetLeft(r) && rh.Position.X < Canvas.GetLeft(r) + r.ActualWidth;
+            return isAHandOverButton;
+        }
+
         //This is called when the controller becomes active. This allows you to place your targets and do any 
         //initialization that you don't want to repeat with each new skeleton frame. You may also 
         //directly move the targets in the MainWindow.xaml file to achieve the same initial repositioning.

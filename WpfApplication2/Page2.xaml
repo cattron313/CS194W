@@ -6,7 +6,7 @@
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
 	Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480" Loaded="setBackground">
+	WindowWidth="640" WindowHeight="480" Loaded="setBackground" Unloaded="removeNUIEventHandler">
 	<Page.Resources>
 		<Storyboard x:Key="LoadSetting"/>
 	</Page.Resources>
@@ -19,9 +19,44 @@
         <Canvas Name="buildAScene" Height="443" Width="604">
             <Frame Canvas.Left="12" Canvas.Top="12" Height="419" Name="frame1" Width="578" />
         </Canvas>
-        <Button Canvas.Left="12" Canvas.Top="12" Content="Record" Height="44" Width="75.5" />
-        <Button Canvas.Left="87" Canvas.Top="12" Content="Pause" Height="44" Width="70.773" />
-        <Button Canvas.Left="156.773" Canvas.Top="12" Content="Finished" Height="44" Width="77" />
-        <Button Canvas.Left="12" Canvas.Top="388" Content="Toy Box" FontWeight="Bold" Height="42.5" Width="57.5" />
+        <Rectangle Canvas.Left="12" Canvas.Top="254" Height="37" Name="pause" Stroke="Black" Width="109">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0D5969" Offset="0.975" />
+                    <GradientStop Color="#FFC7EBF2" Offset="0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Canvas.Left="39" Canvas.Top="254" Content="Pause" FontSize="16" Height="28" Name="label2" Foreground="White" />
+        <Rectangle Canvas.Left="12" Canvas.Top="137" Height="38" Name="record" Stroke="Black" Width="109">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0D5969" Offset="0.975" />
+                    <GradientStop Color="#FFC7EBF2" Offset="0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Canvas.Left="34" Canvas.Top="137" Content="Record" Height="28" Name="label1" FontSize="16" Foreground="White" />
+        <Rectangle Canvas.Left="481" Canvas.Top="137" Height="38" Name="endScene" Stroke="Black" Width="109">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0D5969" Offset="0.975" />
+                    <GradientStop Color="#FFC7EBF2" Offset="0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Canvas.Left="495" Canvas.Top="137" Content="End Scene" FontSize="16" Height="28" Name="label3" Foreground="White" />
+        <Rectangle Canvas.Left="481" Canvas.Top="254" Height="37" Name="toyBox" Stroke="Black" Width="109">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF0D5969" Offset="0.975" />
+                    <GradientStop Color="#FFC7EBF2" Offset="0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Label Canvas.Left="505" Canvas.Top="256" Content="Toy Box" FontSize="16" Height="35" Name="label4" Foreground="White" />
+        <Label Canvas.Left="14" Canvas.Top="14" Content="Third-Person" Height="28" Name="mode" Width="97" FontSize="15" Background="#98FFE341" />
+        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
     </Canvas>
 </Page>

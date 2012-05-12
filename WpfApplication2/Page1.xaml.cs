@@ -49,38 +49,11 @@ namespace WpfApplication2
                                      where s.TrackingState == SkeletonTrackingState.Tracked
                                      select s).FirstOrDefault();
 
-
             if (skeleton != null)
             {
-
                 SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
                 SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
                 currentController.processSkeletonFramePage1(skeleton, this.MainCanvas);
-                //set positions on our joints of interest (already defined as Ellipse objects in the xaml)
-                /*SetEllipsePosition(headEllipse, skeleton.Joints[JointID.Head]);
-                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
-                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                SetEllipsePosition(shoulderCenter, skeleton.Joints[JointID.ShoulderCenter]);
-                SetEllipsePosition(shoulderRight, skeleton.Joints[JointID.ShoulderRight]);
-                SetEllipsePosition(shoulderLeft, skeleton.Joints[JointID.ShoulderLeft]);
-                SetEllipsePosition(ankleRight, skeleton.Joints[JointID.AnkleRight]);
-                SetEllipsePosition(ankleLeft, skeleton.Joints[JointID.AnkleLeft]);
-                SetEllipsePosition(footLeft, skeleton.Joints[JointID.FootLeft]);
-                SetEllipsePosition(footRight, skeleton.Joints[JointID.FootRight]);
-                SetEllipsePosition(wristLeft, skeleton.Joints[JointID.WristLeft]);
-                SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
-                SetEllipsePosition(elbowLeft, skeleton.Joints[JointID.ElbowLeft]);
-                SetEllipsePosition(elbowRight, skeleton.Joints[JointID.ElbowRight]);
-                SetEllipsePosition(ankleLeft, skeleton.Joints[JointID.AnkleLeft]);
-                SetEllipsePosition(footLeft, skeleton.Joints[JointID.FootLeft]);
-                SetEllipsePosition(footRight, skeleton.Joints[JointID.FootRight]);
-                SetEllipsePosition(wristLeft, skeleton.Joints[JointID.WristLeft]);
-                SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
-                SetEllipsePosition(kneeLeft, skeleton.Joints[JointID.KneeLeft]);
-                SetEllipsePosition(kneeRight, skeleton.Joints[JointID.KneeRight]);
-                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);
-                currentController.processSkeletonFrame(skeleton);*/
-
             }
         }
 
@@ -104,6 +77,11 @@ namespace WpfApplication2
         private void setUpKinect(object sender, RoutedEventArgs e)
         {
             nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+        }
+
+        private void removeNUIEventHandler(object sender, RoutedEventArgs e)
+        {
+            nui.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
         }
 
 

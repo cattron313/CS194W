@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,12 +30,59 @@ namespace WpfApplication2
 
 		private void setBackground(object sender, System.Windows.RoutedEventArgs e)
 		{
+            
             Frame f = this.frame1;
             String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\" + del.getSettingPath();
             ImageBrush bg = new ImageBrush();
             bg.ImageSource = new BitmapImage(new Uri(path, UriKind.Absolute));
             f.Background = bg;
+            setUpKinect(sender, e);
 		}
+
+        private void nui_SkeletonFrameReady2(object sender, SkeletonFrameReadyEventArgs e)
+        {
+
+            SkeletonFrame allSkeletons = e.SkeletonFrame;
+
+            //get the first tracked skeleton
+            SkeletonData skeleton = (from s in allSkeletons.Skeletons
+                                     where s.TrackingState == SkeletonTrackingState.Tracked
+                                     select s).FirstOrDefault();
+
+            if (skeleton != null)
+            {
+                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
+                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
+                currentController.processSkeletonFramePage2(skeleton, this.controls);
+            }
+        }
+
+        static public float k_xMaxJointScale = 1.5f;
+        static public float k_yMaxJointScale = 1.5f;
+
+        static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
+        {
+            var scaledJoint = joint.ScaleTo(640, 480, k_xMaxJointScale, k_yMaxJointScale);
+
+            Canvas.SetLeft(ellipse, scaledJoint.Position.X - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
+            Canvas.SetTop(ellipse, scaledJoint.Position.Y - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
+            Canvas.SetZIndex(ellipse, (int)Math.Floor(scaledJoint.Position.Z * 100));
+            if (joint.ID == JointID.HandLeft || joint.ID == JointID.HandRight)
+            {
+                byte val = (byte)(Math.Floor((joint.Position.Z - 0.8) * 255 / 2));
+                ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
+            }
+        }
+
+        private void setUpKinect(object sender, RoutedEventArgs e)
+        {
+            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady2);
+        }
+
+        private void removeNUIEventHandler(object sender, RoutedEventArgs e)
+        {
+            nui.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady2);
+        }
 
 	}
 }

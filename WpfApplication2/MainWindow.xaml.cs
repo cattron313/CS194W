@@ -45,14 +45,6 @@ namespace WpfApplication2
             currentController = new SkeletonController(this, st);
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-           // SetupKinect();
-            
-           // st = new StoryTimeController(this);
-            //currentController = new SkeletonController(this);
-        }
-
         private void SetUpNaviNotifications()
         {
             this.frame1.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(NavigationService_LoadCompleted);
@@ -112,74 +104,11 @@ namespace WpfApplication2
                 //Canvas.SetZIndex(image1, -10000);
             }
         }
-        /*
-        void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
 
-            SkeletonFrame allSkeletons = e.SkeletonFrame;
-
-            //get the first tracked skeleton
-            SkeletonData skeleton = (from s in allSkeletons.Skeletons
-                                     where s.TrackingState == SkeletonTrackingState.Tracked
-                                     select s).FirstOrDefault();
-
-
-            if (skeleton != null)
-            {
-                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
-                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                //set positions on our joints of interest (already defined as Ellipse objects in the xaml)
-                SetEllipsePosition(headEllipse, skeleton.Joints[JointID.Head]);
-                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
-                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                SetEllipsePosition(shoulderCenter, skeleton.Joints[JointID.ShoulderCenter]);
-                SetEllipsePosition(shoulderRight, skeleton.Joints[JointID.ShoulderRight]);
-                SetEllipsePosition(shoulderLeft, skeleton.Joints[JointID.ShoulderLeft]);
-                SetEllipsePosition(ankleRight, skeleton.Joints[JointID.AnkleRight]);
-                SetEllipsePosition(ankleLeft, skeleton.Joints[JointID.AnkleLeft]);
-                SetEllipsePosition(footLeft, skeleton.Joints[JointID.FootLeft]);
-                SetEllipsePosition(footRight, skeleton.Joints[JointID.FootRight]);
-                SetEllipsePosition(wristLeft, skeleton.Joints[JointID.WristLeft]);
-                SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
-                SetEllipsePosition(elbowLeft, skeleton.Joints[JointID.ElbowLeft]);
-                SetEllipsePosition(elbowRight, skeleton.Joints[JointID.ElbowRight]);
-                SetEllipsePosition(ankleLeft, skeleton.Joints[JointID.AnkleLeft]);
-                SetEllipsePosition(footLeft, skeleton.Joints[JointID.FootLeft]);
-                SetEllipsePosition(footRight, skeleton.Joints[JointID.FootRight]);
-                SetEllipsePosition(wristLeft, skeleton.Joints[JointID.WristLeft]);
-                SetEllipsePosition(wristRight, skeleton.Joints[JointID.WristRight]);
-                SetEllipsePosition(kneeLeft, skeleton.Joints[JointID.KneeLeft]);
-                SetEllipsePosition(kneeRight, skeleton.Joints[JointID.KneeRight]);
-                SetEllipsePosition(hipCenter, skeleton.Joints[JointID.HipCenter]);
-                currentController.processSkeletonFrame(skeleton);
-
-            }
-        }
-
-        private void SetEllipsePosition(Ellipse ellipse, Joint joint)
-        {
-            var scaledJoint = joint.ScaleTo(640, 480, k_xMaxJointScale, k_yMaxJointScale);
-
-            Canvas.SetLeft(ellipse, scaledJoint.Position.X - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
-            Canvas.SetTop(ellipse, scaledJoint.Position.Y - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
-            Canvas.SetZIndex(ellipse, (int)-Math.Floor(scaledJoint.Position.Z * 100));
-            if (joint.ID == JointID.HandLeft || joint.ID == JointID.HandRight)
-            {
-                byte val = (byte)(Math.Floor((joint.Position.Z - 0.8) * 255 / 2));
-                ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
-            }
-        }
-
-        */
         private void Window_Closed(object sender, EventArgs e)
         {
             //Cleanup
             nui.Uninitialize();
-        }
-
-        public IStory getDelegate()
-        {
-            return (IStory)st;
         }
 
     }

@@ -4,7 +4,6 @@
 	x:Class="WpfApplication2.MainWindow"
 	x:Name="Window"
 	Title="MainWindow"
-	Width="640" Height="480"
-    Loaded="Window_Loaded">
+	Width="640" Height="480">
 	<Frame Name="frame1" Source="Page1.xaml" Height="429" Width="611" />
 </Window>
