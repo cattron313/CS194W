@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Character.cs" />
+    <Compile Include="CharacterList.cs" />
+    <Compile Include="Page3.xaml.cs">
+      <DependentUpon>Page3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop.cs" />
     <Compile Include="RecordVideo.cs" />
     <Compile Include="Scene.cs" />
@@ -89,6 +93,10 @@
     <Page Include="Page2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +151,40 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SMoon_Images\head.gif" />
+    <Resource Include="SMoon_Images\left_arm.gif" />
+    <Resource Include="SMoon_Images\left_foot.gif" />
+    <Resource Include="SMoon_Images\left_hand.gif" />
+    <Resource Include="SMoon_Images\left_knee.gif" />
+    <Resource Include="SMoon_Images\right_arm.gif" />
+    <Resource Include="SMoon_Images\right_foot.gif" />
+    <Resource Include="SMoon_Images\right_hand.gif" />
+    <Resource Include="SMoon_Images\torso.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MeatWad_Images\Meatwad.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Optimusg1_Images\right_foot.gif" />
+    <Resource Include="Optimusg1_Images\right_hand.gif" />
+    <Resource Include="Optimusg1_Images\right_knee.gif" />
+    <Resource Include="Optimusg1_Images\right_shoulder.gif" />
+    <Resource Include="Optimusg1_Images\torso.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Optimusg1_Images\head.gif" />
+    <Resource Include="Optimusg1_Images\left_foot.gif" />
+    <Resource Include="Optimusg1_Images\left_hand.gif" />
+    <Resource Include="Optimusg1_Images\left_knee.gif" />
+    <Resource Include="Optimusg1_Images\left_shoulder.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Optimusg1_Images\Optimusg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SMoon_Images\SMoon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -64,6 +64,12 @@ namespace WpfApplication2
                 ((Page2)e.Content).nui = nui;
                 ((Page2)e.Content).currentController = currentController;
             }
+            else if (((Frame)sender).Source.ToString() == "Page3.xaml")
+            {
+                ((Page3)e.Content).del = st;
+                ((Page3)e.Content).nui = nui;
+                ((Page3)e.Content).currentController = currentController;
+            }
         }
 
         private void SetupKinect()

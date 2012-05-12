@@ -8,7 +8,7 @@ namespace WpfApplication2
     class Story
     {
         private List<Scene> sceneList;
-        private String name;
+        private string name;
 
         public Story()
         {

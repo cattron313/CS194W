@@ -18,3 +18,5 @@ C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApp
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Coding4Fun.Kinect.Wpf.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Microsoft.Expression.Drawing.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Coding4Fun.Kinect.Wpf.pdb
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page3.baml
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page3.g.cs

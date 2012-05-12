@@ -72,6 +72,8 @@ namespace WpfApplication2
                 byte val = (byte)(Math.Floor((joint.Position.Z - 0.8) * 255 / 2));
                 ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
             }
+
+            
         }
 
         private void setUpKinect(object sender, RoutedEventArgs e)

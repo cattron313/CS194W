@@ -18,6 +18,8 @@ namespace WpfApplication2
     {
         string addSettingToScene(string name);
         string getSettingPath();
+        void addCharacterToScene(Character name);
+        List<Character> getAllCharactersInScene();
     }
 
     public class StoryTimeController : IStory
@@ -47,6 +49,18 @@ namespace WpfApplication2
             story.addScene(s);
             currentScene++;
             return s.getSetting().getPath();
+        }
+
+        public void addCharacterToScene(Character name)
+        {
+            Scene s = story.getScene(currentScene);
+            s.addCharacter(name);
+        }
+
+        public List<Character> getAllCharactersInScene()
+        {
+
+            return story.getScene(currentScene).getAllCharacters();
         }
 
         public static IStory getDelegate()

@@ -29,5 +29,15 @@ namespace WpfApplication2
         {
             return location;
         }
+
+        internal void addCharacter(Character name)
+        {
+            characterList.Add(name);
+        }
+
+        internal List<Character> getAllCharacters()
+        {
+            return characterList;
+        }
     }
 }
