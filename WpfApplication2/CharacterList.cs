@@ -11,7 +11,7 @@ public class CharacterList
         initializeList();
 	}
 
-    private void initializeList()
+    private static void initializeList()
     {
         c_List = new List<Character>();
         Character c_0 = new Character("Meatwad", "MeatWad_Images\\Meatwad.gif", null, 0);
@@ -42,6 +42,10 @@ public class CharacterList
 
     public static Character getCharacter(string characterName)
     {
+        if (c_List == null) {
+            c_List = new List<Character>();
+            initializeList();
+        }
         foreach (Character c in c_List)
         {
             if (String.Compare(c.getName(), characterName) == 0) return c;

@@ -18,8 +18,8 @@
         <Border x:Name="SailorMoon" BorderBrush="Black" BorderThickness="1" Height="53" Canvas.Left="31" Canvas.Top="312" Width="139" Background="#FFB2A8DE">
 			<Label Content="Sailor Moon" FontSize="21.333"/>
 		</Border>
-        <Image x:Name="curCharact" Height="236" Canvas.Left="258" Canvas.Top="128" Width="318"/>
-        <Border Name="Done" BorderBrush="Black" BorderThickness="1" Height="52" Canvas.Left="428" Canvas.Top="62" Width="152" Background="#FFB2A8DE">
+        <Image x:Name="curCharact" Height="236" Canvas.Left="191" Canvas.Top="129" Width="318"/>
+        <Border Name="Done" BorderBrush="Black" BorderThickness="1" Height="52" Canvas.Left="485" Canvas.Top="218" Width="99" Background="#FFB2A8DE">
         	<Label Content="Done" FontSize="21.333"/>
         </Border>
         <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />

@@ -20,6 +20,7 @@ namespace WpfApplication2
         public IStory del;
         public Runtime nui;
         public SkeletonController currentController;
+        private int count = 1;
 	
 		public Page2()
 		{
@@ -37,6 +38,39 @@ namespace WpfApplication2
             bg.ImageSource = new BitmapImage(new Uri(path, UriKind.Absolute));
             f.Background = bg;
             setUpKinect(sender, e);
+            List<Character> list = del.getAllCharactersInScene();
+            Image img = new Image();
+            int count = 1;
+            foreach (Character character in list)
+            {
+                if (character != null)
+                {
+                    if (String.Compare(character.getName(), "Meatwad") == 0)
+                    {
+                        string charPath = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Meatwad_Images\\Meatwad.gif";
+                        img.Source = new BitmapImage(new Uri(charPath, UriKind.Absolute));
+                    }
+                    else if (String.Compare(character.getName(), "Optimus Prime") == 0)
+                    {
+                        string charPath = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Optimusg1_Images\\Optimusg1.png";
+                        img.Source = new BitmapImage(new Uri(charPath, UriKind.Absolute));
+                    }
+                    else
+                    {
+                        string charPath = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\SMoon_Images\\SMoon.png";
+                        img.Source = new BitmapImage(new Uri(charPath, UriKind.Absolute));
+                    }
+                    img.Height = 100;
+                    img.Width = 100;
+                    img.Name = "character" + count.ToString();
+                    Console.WriteLine(img.Name);
+                    Canvas.SetTop(img, buildAScene.ActualHeight / 2);
+                    Canvas.SetLeft(img, buildAScene.ActualWidth / 2);
+                    this.buildAScene.Children.Add(img);
+                    ++count;
+                }
+                
+            }
 		}
 
         private void nui_SkeletonFrameReady2(object sender, SkeletonFrameReadyEventArgs e)
@@ -53,7 +87,7 @@ namespace WpfApplication2
             {
                 SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
                 SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                currentController.processSkeletonFramePage2(skeleton, this.controls);
+                currentController.processSkeletonFramePage2(skeleton, this.controls, this);
             }
         }
 

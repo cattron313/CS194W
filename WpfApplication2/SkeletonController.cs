@@ -23,11 +23,12 @@ namespace WpfApplication2
         private bool userIsSelectingCharacter;
         private bool usingRightHand;
         private float lastZPosition;
+        private Image characterToReposition;
 
         private string newCharacterToAdd;
 
 
-        public const double Z_SELECTION_THRESHOLD = 2.0;
+        public const double Z_SELECTION_THRESHOLD = 0.15;
 
         public SkeletonController(MainWindow win, IStory stDelegate)
         {
@@ -82,86 +83,117 @@ namespace WpfApplication2
             del.addSettingToScene(name);
         }
 
-        public virtual void processSkeletonFramePage2(SkeletonData skeleton, Canvas canvas)
+        private void moveCharacter(Joint hand)
+        {
+            Canvas.SetLeft(characterToReposition, hand.Position.X);
+            Canvas.SetTop(characterToReposition, hand.Position.Y);
+        }
+
+        public virtual void processSkeletonFramePage2(SkeletonData skeleton, Canvas canvas, Page2 page)
         {
             Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
             Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
             bool shouldExitForLoop = false;
 
-            foreach (object uiElm in canvas.Children)
+            if (userIsSelectingCharacter)
             {
-                if (uiElm is Rectangle)
+                //User is moving the character
+                Console.WriteLine("Z-value-diff: " + Math.Abs(rightHand.Position.Z - lastZPosition));
+                if (usingRightHand && Math.Abs(rightHand.Position.Z - lastZPosition) >= Z_SELECTION_THRESHOLD)
                 {
-                    if (eitherHandIsOverRectangle((Rectangle)uiElm, canvas, leftHand, rightHand))
-                    {
-                        if (String.Compare(((Rectangle)uiElm).Name, "record") == 0)
-                        {
-                            foreach (object obj in canvas.Children)
-                            {
-                                if (obj is Label && String.Compare(((Label)obj).Name, "mode") == 0)
-                                {
-                                    ((Label)obj).Content = "Record";
-                                    shouldExitForLoop = true;
-                                    break;
-                                }
-                            }
-                        }
-                        else if (String.Compare(((Rectangle)uiElm).Name, "pause") == 0)
-                        {
-                            foreach (object obj in canvas.Children)
-                            {
-                                if (obj is Label && String.Compare(((Label)obj).Name, "mode") == 0)
-                                {
-                                    ((Label)obj).Content = "Paused";
-                                    shouldExitForLoop = true;
-                                    break;
-                                }
-                            }
-                        }
-                        else if (String.Compare(((Rectangle)uiElm).Name, "endScene") == 0)
-                        {
-
-                        }
-                        else if (String.Compare(((Rectangle)uiElm).Name, "toyBox") == 0)
-                        {
-                            Frame recordAScene = new Frame();
-                            recordAScene.Source = new Uri("Page3.xaml", UriKind.Relative);
-                            recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
-                            Application.Current.MainWindow.Content = recordAScene;
-                        }
-                    }
-                    if (shouldExitForLoop) break;
+                    Console.WriteLine(page.rightEllipse.Fill.ToString());
+                    moveCharacter(rightHand);
                 }
-                else if (uiElm is Image)
+                else if (!usingRightHand && Math.Abs(leftHand.Position.Z - lastZPosition) >= Z_SELECTION_THRESHOLD)
                 {
-                    if (userIsSelectingCharacter)
+                    moveCharacter(leftHand);
+                }
+                else if (!eitherHandIsOverImage(characterToReposition, canvas, leftHand, rightHand)) userIsSelectingCharacter = false;
+            }
+            else
+            {
+                foreach (object uiElm in canvas.Children)
+                {
+                    if (uiElm is Rectangle)
                     {
-                        if ((usingRightHand && rightHand.Position.Z - lastZPosition >= Z_SELECTION_THRESHOLD) ||
-                            (!usingRightHand && leftHand.Position.Z - lastZPosition >= Z_SELECTION_THRESHOLD))
+                        if (eitherHandIsOverRectangle((Rectangle)uiElm, canvas, leftHand, rightHand))
                         {
+                            if (String.Compare(((Rectangle)uiElm).Name, "record") == 0)
+                            {
+                                foreach (object obj in canvas.Children)
+                                {
+                                    if (obj is Label && String.Compare(((Label)obj).Name, "mode") == 0)
+                                    {
+                                        ((Label)obj).Content = "Record";
+                                        shouldExitForLoop = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (String.Compare(((Rectangle)uiElm).Name, "pause") == 0)
+                            {
+                                foreach (object obj in canvas.Children)
+                                {
+                                    if (obj is Label && String.Compare(((Label)obj).Name, "mode") == 0)
+                                    {
+                                        ((Label)obj).Content = "Paused";
+                                        shouldExitForLoop = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (String.Compare(((Rectangle)uiElm).Name, "endScene") == 0)
+                            {
 
+                            }
+                            else if (String.Compare(((Rectangle)uiElm).Name, "toyBox") == 0)
+                            {
+                                Frame recordAScene = new Frame();
+                                recordAScene.Source = new Uri("Page3.xaml", UriKind.Relative);
+                                recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
+                                Application.Current.MainWindow.Content = recordAScene;
+                            }
                         }
+                        if (shouldExitForLoop) break;
+                    }
+                    else if (uiElm is Canvas)
+                    {
+                        foreach (object child in ((Canvas)uiElm).Children)
+                        {
+                            if (child is Image)
+                            {
+                                if (handIsOverImage((Image)child, canvas, rightHand))
+                                {
+                                    Console.WriteLine("Right Hand Z" + rightHand.Position.Z);
+                                    userIsSelectingCharacter = true;
+                                    usingRightHand = true;
+                                    characterToReposition = (Image)child;
+                                    lastZPosition = rightHand.Position.Z;
+                                    Console.WriteLine("Last Hand Z" + lastZPosition);
+                                }
+                                else if (handIsOverImage((Image)child, canvas, leftHand))
+                                {
+                                    userIsSelectingCharacter = true;
+                                    usingRightHand = false;
+                                    characterToReposition = (Image)child;
+                                    lastZPosition = leftHand.Position.Z;
+                                }
+                                else
+                                {
+                                    userIsSelectingCharacter = false;
+                                    lastZPosition = 0;
+                                }
 
-                    }
-                    if (handIsOverImage((Image)uiElm, canvas, rightHand))
-                    {
-                        userIsSelectingCharacter = true;
-                        usingRightHand = true;
-                        lastZPosition = rightHand.Position.Z;
-                    }
-                    else if (handIsOverImage((Image)uiElm, canvas, leftHand))
-                    {
-                        userIsSelectingCharacter = true;
-                        usingRightHand = false;
-                        lastZPosition = leftHand.Position.Z;
-                    }
-                    else
-                    {
-                        userIsSelectingCharacter = false;
-                        lastZPosition = -1000;
+                            }
+                        }
                     }
                 }
             }
+        }
+
+        private bool eitherHandIsOverImage(Image img, Canvas c, Joint lh, Joint rh)
+        {
+            return handIsOverImage(img, c, lh) || handIsOverImage(img, c, rh);
         }
 
         private bool handIsOverImage(Image img, Canvas c, Joint h)
@@ -233,7 +265,8 @@ namespace WpfApplication2
                         }
                         else if (String.Compare(selected.Name, "Done") == 0)
                         {
-                            del.addCharacterToScene(CharacterList.getCharacter(newCharacterToAdd));
+                            if (newCharacterToAdd != null) del.addCharacterToScene(CharacterList.getCharacter(newCharacterToAdd));
+                            newCharacterToAdd = null;
                             Frame recordAScene = new Frame();
                             recordAScene.Source = new Uri("Page2.xaml", UriKind.Relative);
                             recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
