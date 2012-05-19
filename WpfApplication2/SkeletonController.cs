@@ -27,6 +27,7 @@ namespace WpfApplication2
 
         private string newCharacterToAdd;
 
+        private ulong count = 0;
 
         public const double Z_SELECTION_THRESHOLD = 0.15;
 
@@ -48,7 +49,7 @@ namespace WpfApplication2
             Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
             Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
 
-            /*Example implementation*/
+        /*Example implementation*/
 
             foreach (object uiElm in canvas.Children)
             {
@@ -61,6 +62,7 @@ namespace WpfApplication2
                     }
                 }
             }
+              
         }
 
         private bool eitherHandIsOverBorder(Border img, Canvas c, Joint lh, Joint rh)
@@ -85,8 +87,8 @@ namespace WpfApplication2
 
         private void moveCharacter(Joint hand)
         {
-            Canvas.SetLeft(characterToReposition, hand.Position.X);
-            Canvas.SetTop(characterToReposition, hand.Position.Y);
+            Canvas.SetLeft(characterToReposition, hand.Position.X - characterToReposition.ActualWidth / 2);
+            Canvas.SetTop(characterToReposition, hand.Position.Y - characterToReposition.ActualHeight / 2);
         }
 
         public virtual void processSkeletonFramePage2(SkeletonData skeleton, Canvas canvas, Page2 page)
@@ -99,12 +101,11 @@ namespace WpfApplication2
             {
                 //User is moving the character
                 Console.WriteLine("Z-value-diff: " + Math.Abs(rightHand.Position.Z - lastZPosition));
-                if (usingRightHand && Math.Abs(rightHand.Position.Z - lastZPosition) >= Z_SELECTION_THRESHOLD)
+                if (usingRightHand && rightHand.Position.Z - lastZPosition <= -Z_SELECTION_THRESHOLD)
                 {
-                    Console.WriteLine(page.rightEllipse.Fill.ToString());
                     moveCharacter(rightHand);
                 }
-                else if (!usingRightHand && Math.Abs(leftHand.Position.Z - lastZPosition) >= Z_SELECTION_THRESHOLD)
+                else if (!usingRightHand && leftHand.Position.Z - lastZPosition <= -Z_SELECTION_THRESHOLD)
                 {
                     moveCharacter(leftHand);
                 }
@@ -190,6 +191,7 @@ namespace WpfApplication2
                 }
             }
         }
+
 
         private bool eitherHandIsOverImage(Image img, Canvas c, Joint lh, Joint rh)
         {
