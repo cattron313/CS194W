@@ -9,7 +9,7 @@
 	Title="Page4">
 
     <Canvas Name="main">
-    	<Rectangle Fill="#FFF4F4F5" Margin="146,0,139,0" Stroke="Red" StrokeThickness="7" Height="468" Width="339" />
+    	<Rectangle Fill="#FFF4F4F5" Margin="146,0,139,0" Stroke="Red" StrokeThickness="7" Height="480" Width="339" />
         <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
         <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
     </Canvas>

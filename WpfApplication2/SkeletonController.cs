@@ -297,9 +297,10 @@ namespace WpfApplication2
             }
         }
 
-        private void setBodyPosition(Joint bp, Image bodyPart, double y_offset, double x_offset)
+        private void setBodyPosition(Joint bp, Image bodyPart, double y_offset, double x_offset, bool setTop)
         {
-            Canvas.SetTop(bodyPart, (bp.Position.Y - bodyPart.ActualHeight / 2) + y_offset);
+            if (setTop) Canvas.SetTop(bodyPart, bp.Position.Y + y_offset);
+            else Canvas.SetBottom(bodyPart, bp.Position.Y + y_offset);
             Canvas.SetLeft(bodyPart, (bp.Position.X - bodyPart.ActualWidth / 2) + x_offset);
         }
 
@@ -346,35 +347,35 @@ namespace WpfApplication2
                         switch (partID)
                         {
                             case 0:
-                                setBodyPosition(head, bodyPart, 150, 0);
+                                setBodyPosition(spine, bodyPart, 100, 0, false);
                                 break;
                             case 17:
-                                setBodyPosition(spine, bodyPart, 100, 0);
+                                Canvas.SetTop(bodyPart, spine.Position.Y - bodyPart.ActualHeight / 2);
+                                Canvas.SetLeft(bodyPart, spine.Position.X - bodyPart.ActualWidth / 2);
                                 break;
                             case 5:
-                                setBodyPosition(rightFoot, bodyPart, 0, 0);
+                                setBodyPosition(rightKnee, bodyPart, 0, 0, true);
                                 break;
                             case 7:
-                                setBodyPosition(rightHand, bodyPart, 50, 0);
+                                setBodyPosition(rightElbow, bodyPart, 0, 0, true);
                                 break;
                             case 15:
-                                setBodyPosition(rightShoulder, bodyPart, 125, 0);
+                                setBodyPosition(rightShoulder, bodyPart, 0, 0, true);
                                 break;
                             case 12:
-                                setBodyPosition(rightKnee, bodyPart, 0, 0);
+                                setBodyPosition(rightHip, bodyPart, 0, 0, true);
                                 break;
-
                             case 6:
-                                setBodyPosition(leftFoot, bodyPart, 0, 0);
+                                setBodyPosition(leftKnee, bodyPart, 0, 0, true);
                                 break;
                             case 8:
-                                setBodyPosition(leftHand, bodyPart, 50, 0);
+                                setBodyPosition(leftElbow, bodyPart, 0, 0, true);
                                 break;
                             case 16:
-                                setBodyPosition(leftShoulder, bodyPart, 125, 0);
+                                setBodyPosition(leftShoulder, bodyPart, 0, 0, true);
                                 break;
                             case 13:
-                                setBodyPosition(leftKnee, bodyPart, 0 ,0);
+                                setBodyPosition(leftHip, bodyPart, 0 ,0, true);
                                 break;
                             default:
                                 break;
