@@ -57,8 +57,8 @@ namespace WpfApplication2
             }
         }
 
-        static public float k_xMaxJointScale = 1.5f;
-        static public float k_yMaxJointScale = 1.5f;
+        static public float k_xMaxJointScale = .5f;
+        static public float k_yMaxJointScale = .5f;
 
         static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {

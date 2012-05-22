@@ -31,8 +31,8 @@ namespace WpfApplication2
         static SkeletonController currentController;
 
         //Scaling constants
-        public float k_xMaxJointScale = 1.5f;
-        public float k_yMaxJointScale = 1.5f;
+        public float k_xMaxJointScale = .5f;
+        public float k_yMaxJointScale = .5f;
 
         public MainWindow()
         {
@@ -69,6 +69,12 @@ namespace WpfApplication2
                 ((Page3)e.Content).del = st;
                 ((Page3)e.Content).nui = nui;
                 ((Page3)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "Page4.xaml")
+            {
+                ((Page4)e.Content).del = st;
+                ((Page4)e.Content).nui = nui;
+                ((Page4)e.Content).currentController = currentController;
             }
         }
 

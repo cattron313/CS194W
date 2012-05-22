@@ -29,7 +29,7 @@ namespace WpfApplication2
 
         public Page3()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -92,8 +92,8 @@ namespace WpfApplication2
             }
         }
 
-        static public float k_xMaxJointScale = 1.5f;
-        static public float k_yMaxJointScale = 1.5f;
+        static public float k_xMaxJointScale = .5f;
+        static public float k_yMaxJointScale = .5f;
 
         static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {

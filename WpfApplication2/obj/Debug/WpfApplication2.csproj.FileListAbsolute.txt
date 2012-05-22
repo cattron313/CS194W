@@ -15,8 +15,9 @@ C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApp
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Interop.DXTRANSLib.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Interop.MediaPlayer.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\WpfApplication2.csproj.ResolveComReference.cache
-C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Coding4Fun.Kinect.Wpf.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Microsoft.Expression.Drawing.dll
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\bin\Debug\Coding4Fun.Kinect.Wpf.pdb
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page3.baml
 C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page3.g.cs
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page4.baml
+C:\Users\Alexandria\Documents\Expression\Blend 4\Projects\WpfApplication2\WpfApplication2\obj\Debug\Page4.g.cs

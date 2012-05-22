@@ -20,6 +20,8 @@ namespace WpfApplication2
         string getSettingPath();
         void addCharacterToScene(Character name);
         List<Character> getAllCharactersInScene();
+        void setSelectedCharacter(string name);
+        string getSelectedCharacter();
     }
 
     public class StoryTimeController : IStory
@@ -73,7 +75,15 @@ namespace WpfApplication2
             return story.getScene(currentScene).getSetting().getPath();
         }
 
+        public void setSelectedCharacter(string name)
+        {
+            story.getScene(currentScene).setCurSelCharName(name);
+        }
 
+        public string getSelectedCharacter()
+        {
+            return story.getScene(currentScene).getcurSelCharName();
+        }
 
     }
 }

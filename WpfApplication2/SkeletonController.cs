@@ -24,8 +24,10 @@ namespace WpfApplication2
         private bool usingRightHand;
         private float lastZPosition;
         private Image characterToReposition;
+        private string selectedCharacterName;
 
         private string newCharacterToAdd;
+        List<Joint> previousJoints;
 
         private ulong count = 0;
 
@@ -49,7 +51,7 @@ namespace WpfApplication2
             Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
             Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, window.k_xMaxJointScale, window.k_yMaxJointScale);
 
-        /*Example implementation*/
+            /*Example implementation*/
 
             foreach (object uiElm in canvas.Children)
             {
@@ -62,7 +64,7 @@ namespace WpfApplication2
                     }
                 }
             }
-              
+
         }
 
         private bool eitherHandIsOverBorder(Border img, Canvas c, Joint lh, Joint rh)
@@ -154,8 +156,16 @@ namespace WpfApplication2
                                 recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
                                 Application.Current.MainWindow.Content = recordAScene;
                             }
+                            else if (String.Compare(((Rectangle)uiElm).Name, "switchMode") == 0)
+                            {
+                                Frame recordAScene = new Frame();
+                                recordAScene.Source = new Uri("Page4.xaml", UriKind.Relative);
+                                recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
+                                Application.Current.MainWindow.Content = recordAScene;
+                                del.setSelectedCharacter(selectedCharacterName);
+                            }
+                            if (shouldExitForLoop) break;
                         }
-                        if (shouldExitForLoop) break;
                     }
                     else if (uiElm is Canvas)
                     {
@@ -169,6 +179,12 @@ namespace WpfApplication2
                                     userIsSelectingCharacter = true;
                                     usingRightHand = true;
                                     characterToReposition = (Image)child;
+                                    String imgName = ((Image)child).Name;
+
+                                    if (imgName.Contains("Meatwad")) selectedCharacterName = "Meatwad";
+                                    else if (imgName.Contains("Optimus")) selectedCharacterName = "OptimusPrime";
+                                    else if (imgName.Contains("Sailor")) selectedCharacterName = "SailorMoon";
+
                                     lastZPosition = rightHand.Position.Z;
                                     Console.WriteLine("Last Hand Z" + lastZPosition);
                                 }
@@ -256,13 +272,13 @@ namespace WpfApplication2
                         else if (String.Compare(selected.Name, "Optimus") == 0)
                         {
                             String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Optimusg1_Images\\Optimusg1.png";
-                            newCharacterToAdd = "Optimus Prime";
+                            newCharacterToAdd = "OptimusPrime";
                             page.curCharact.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
                         }
                         else if (String.Compare(selected.Name, "SailorMoon") == 0)
                         {
                             String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\SMoon_Images\\SMoon.png";
-                            newCharacterToAdd = "Sailor Moon";
+                            newCharacterToAdd = "SailorMoon";
                             page.curCharact.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
                         }
                         else if (String.Compare(selected.Name, "Done") == 0)
@@ -274,12 +290,115 @@ namespace WpfApplication2
                             recordAScene.NavigationService.LoadCompleted += new System.Windows.Navigation.LoadCompletedEventHandler(MainWindow.NavigationService_LoadCompleted);
                             Application.Current.MainWindow.Content = recordAScene;
                         }
-                        
+
 
                     }
                 }
             }
         }
+
+        private void setBodyPosition(Joint bp, Image bodyPart, double y_offset, double x_offset)
+        {
+            Canvas.SetTop(bodyPart, (bp.Position.Y - bodyPart.ActualHeight / 2) + y_offset);
+            Canvas.SetLeft(bodyPart, (bp.Position.X - bodyPart.ActualWidth / 2) + x_offset);
+        }
+
+        internal void processSkeletonFramePage4(SkeletonData skeleton, Canvas canvas, Page4 page4, List<Image> parts)
+        {
+            float x_page4Scale = 1f;
+            float y_page4Scale = 1f;
+            
+            Joint leftHand = skeleton.Joints[JointID.HandLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint leftElbow = skeleton.Joints[JointID.ElbowLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint leftShoulder = skeleton.Joints[JointID.ShoulderLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint leftHip = skeleton.Joints[JointID.HipLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint leftKnee = skeleton.Joints[JointID.KneeLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint leftFoot = skeleton.Joints[JointID.FootLeft].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+
+            Joint head = skeleton.Joints[JointID.Head].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint neck = skeleton.Joints[JointID.ShoulderCenter].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint spine = skeleton.Joints[JointID.Spine].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint centerHip = skeleton.Joints[JointID.HipCenter].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+
+            Joint rightHand = skeleton.Joints[JointID.HandRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint rightElbow = skeleton.Joints[JointID.ElbowRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint rightShoulder = skeleton.Joints[JointID.ShoulderRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint rightHip = skeleton.Joints[JointID.HipRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint rightKnee = skeleton.Joints[JointID.KneeRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+            Joint rightFoot = skeleton.Joints[JointID.FootRight].ScaleTo(640, 480, x_page4Scale, y_page4Scale);
+
+            if (previousJoints != null)
+            {
+                foreach (object uiElm in canvas.Children)
+                {
+                    if (uiElm is Image)
+                    {
+                        int partID = -1;
+                        string partName = ((Image)uiElm).Name;
+                        Image bodyPart = (Image)uiElm;
+                        for (int i = 0; i < 22; i++)
+                        {
+                            if (partName.Contains(i.ToString())) partID = i;
+                        }
+
+                        //Switch cases depending on partID
+
+                        switch (partID)
+                        {
+                            case 0:
+                                setBodyPosition(head, bodyPart, 150, 0);
+                                break;
+                            case 17:
+                                setBodyPosition(spine, bodyPart, 100, 0);
+                                break;
+                            case 5:
+                                setBodyPosition(rightFoot, bodyPart, 0, 0);
+                                break;
+                            case 7:
+                                setBodyPosition(rightHand, bodyPart, 50, 0);
+                                break;
+                            case 15:
+                                setBodyPosition(rightShoulder, bodyPart, 125, 0);
+                                break;
+                            case 12:
+                                setBodyPosition(rightKnee, bodyPart, 0, 0);
+                                break;
+
+                            case 6:
+                                setBodyPosition(leftFoot, bodyPart, 0, 0);
+                                break;
+                            case 8:
+                                setBodyPosition(leftHand, bodyPart, 50, 0);
+                                break;
+                            case 16:
+                                setBodyPosition(leftShoulder, bodyPart, 125, 0);
+                                break;
+                            case 13:
+                                setBodyPosition(leftKnee, bodyPart, 0 ,0);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+                previousJoints = new List<Joint>();
+                previousJoints.Add(leftHand);
+                previousJoints.Add(leftElbow);
+                previousJoints.Add(leftShoulder);
+                previousJoints.Add(leftHip);
+                previousJoints.Add(leftKnee);
+                previousJoints.Add(leftFoot);
+                previousJoints.Add(head);
+                previousJoints.Add(neck);
+                previousJoints.Add(spine);
+                previousJoints.Add(centerHip);
+                previousJoints.Add(rightHand);
+                previousJoints.Add(rightElbow);
+                previousJoints.Add(rightShoulder);
+                previousJoints.Add(rightHip);
+                previousJoints.Add(rightKnee);
+                previousJoints.Add(rightFoot);
+        }
     }
-    
 }

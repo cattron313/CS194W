@@ -67,6 +67,9 @@
     <Compile Include="Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Page4.xaml.cs">
+      <DependentUpon>Page4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Prop.cs" />
     <Compile Include="RecordVideo.cs" />
     <Compile Include="Scene.cs" />
@@ -95,6 +98,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Page3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +192,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SMoon_Images\SMoon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SMoon_Images\right_knee.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

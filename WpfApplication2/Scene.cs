@@ -16,6 +16,7 @@ namespace WpfApplication2
         private List<Character> characterList;
         private List<Prop> propList;
         private RecordVideo sceneVid;
+        private string curSelCharName;
  
 
         public Scene(string p)
@@ -23,6 +24,7 @@ namespace WpfApplication2
             location = new Setting(p);
             characterList = new List<Character>();
             propList = new List<Prop>();
+            curSelCharName = "";
         }
 
         public Setting getSetting()
@@ -38,6 +40,16 @@ namespace WpfApplication2
         internal List<Character> getAllCharacters()
         {
             return characterList;
+        }
+
+        public void setCurSelCharName(string name)
+        {
+            curSelCharName = name;
+        }
+
+        public string getcurSelCharName()
+        {
+            return curSelCharName;
         }
     }
 }

@@ -39,18 +39,19 @@ namespace WpfApplication2
             f.Background = bg;
             setUpKinect(sender, e);
             List<Character> list = del.getAllCharactersInScene();
-            Image img = new Image();
-            int count = 1;
+            
+            
             foreach (Character character in list)
             {
                 if (character != null)
                 {
+                    Image img = new Image();
                     if (String.Compare(character.getName(), "Meatwad") == 0)
                     {
                         string charPath = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Meatwad_Images\\Meatwad.gif";
                         img.Source = new BitmapImage(new Uri(charPath, UriKind.Absolute));
                     }
-                    else if (String.Compare(character.getName(), "Optimus Prime") == 0)
+                    else if (String.Compare(character.getName(), "OptimusPrime") == 0)
                     {
                         string charPath = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Optimusg1_Images\\Optimusg1.png";
                         img.Source = new BitmapImage(new Uri(charPath, UriKind.Absolute));
@@ -62,7 +63,7 @@ namespace WpfApplication2
                     }
                     img.Height = 100;
                     img.Width = 100;
-                    img.Name = "character" + count.ToString();
+                    img.Name = "character" + character.getName() + count.ToString();
                     Console.WriteLine(img.Name);
                     Canvas.SetTop(img, buildAScene.ActualHeight / 2);
                     Canvas.SetLeft(img, buildAScene.ActualWidth / 2);
@@ -91,8 +92,8 @@ namespace WpfApplication2
             }
         }
 
-        static public float k_xMaxJointScale = 1.5f;
-        static public float k_yMaxJointScale = 1.5f;
+        static public float k_xMaxJointScale = .5f;
+        static public float k_yMaxJointScale = .5f;
 
         static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {
