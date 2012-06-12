@@ -1,0 +1,28 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="WpfApplication2.Page6"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Width="1366" Height="768" WindowWidth="1366" WindowHeight="768" Loaded="setUpKinect" Unloaded="removeNUIEventHandler">
+
+    <Page.Background >
+        <ImageBrush ImageSource= "bg3.jpg" >
+        </ImageBrush >
+    </Page.Background >
+
+
+    <Canvas x:Name="controls" Height="768" Width="1366">
+        <Image Canvas.Top="138.676" Height="710.324" Source="characters_img3.png" Stretch="Fill" Width="1553.705" Canvas.Left="12" />
+
+        <TextBlock Height="342.84" Opacity=".8" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center" Width="682.478" Canvas.Left="384.706" Canvas.Top="293.16" FontWeight="Bold" Background="#FFEF5938" FontFamily="/WpfApplication2;component/Fonts/#Segoe UI" Foreground="White"><Run Text="Congratulations!"/><LineBreak/><Run Text="You are done making a story!"/></TextBlock>
+        <Rectangle Height="71.295" Stroke="#FFB8340C" x:Name="MainMenu" VerticalAlignment="Top" Canvas.Left="642" Canvas.Top="552" Width="212.395" Fill="#FFEF5938" />
+        <Label Content="Main Menu" VerticalAlignment="Top" Height="72.295" FontSize="37.333" Foreground="White" Canvas.Left="642" Canvas.Top="564" Width="232.859" FontWeight="Bold" FontFamily="Aharoni" />
+        <Image Canvas.Left="717.258" Canvas.Top="471.136" Height="299.784" Source="bart1.png" Stretch="Fill" Width="349.926" />
+        <Ellipse Canvas.Left="512" Canvas.Top="814" Height="35" x:Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="888" Canvas.Top="814" Fill="Blue" Height="35" x:Name="leftEllipse" Stroke="Black" Width="35" />
+
+    </Canvas>
+</Page>

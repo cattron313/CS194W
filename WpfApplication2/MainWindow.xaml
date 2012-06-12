@@ -3,7 +3,9 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	x:Class="WpfApplication2.MainWindow"
 	x:Name="Window"
+    WindowStyle="SingleBorderWindow"
+    WindowState="Maximized"
 	Title="MainWindow"
-	Width="640" Height="480">
-	<Frame Name="frame1" Source="Page1.xaml" Height="429" Width="611" />
+	Width="1366" Height="768">
+	<Frame Name="frame1" Source="Page5.xaml" Height="768" Width="1366" />
 </Window>

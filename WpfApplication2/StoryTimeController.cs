@@ -19,30 +19,51 @@ namespace WpfApplication2
         string addSettingToScene(string name);
         string getSettingPath();
         void addCharacterToScene(Character name);
+        void removeCharacter(int id);
         List<Character> getAllCharactersInScene();
         void setSelectedCharacter(string name);
         string getSelectedCharacter();
+        int getCurrentScene();
+        void setAssistanceMode(bool flag);
+        Boolean getAssitanceMode();
+        void createANewStory();
+        void removeCurrentScene();
+        void setCharacterPosition(int id, double x, double y);
+        double getCharacterPositionX(int id);
+        double getCharacterPositionY(int id);
+        String getPrompt();
     }
 
     public class StoryTimeController : IStory
     {
         private static MainWindow window;
         private static IStory del;
+        private static List<String> prompts;
         private int currentScene;
-        
+        public static int MAX_SCENES = 3;
+        private Boolean assistanceEnabled = false;
         private Story story;
+        
 
         public StoryTimeController(MainWindow win)
         {
             window = win;
             del = (IStory)this;
-            story = new Story();
-            currentScene = -1;
+            createANewStory();
+            prompts = new List<String>();
+            prompts.Add("Introduce your characters and the story setting. Tell us what they are doing here.");
+            prompts.Add("This is the the scene of conflict or struggle. It's typically most exciting part of the story.");
+            prompts.Add("How is the conflict resolved? How does your story end?");
         }
 
-        public StoryTimeController()
+        public int getCurrentScene()
         {
+            return currentScene;
+        }
 
+        public String getPrompt()
+        {
+            return prompts.ElementAt(currentScene +1);
         }
 
         public string addSettingToScene(string name)
@@ -50,6 +71,7 @@ namespace WpfApplication2
             Scene s = new Scene(name);
             story.addScene(s);
             currentScene++;
+            Console.WriteLine("New Scene:" + currentScene);
             return s.getSetting().getPath();
         }
 
@@ -57,6 +79,12 @@ namespace WpfApplication2
         {
             Scene s = story.getScene(currentScene);
             s.addCharacter(name);
+        }
+
+        public void removeCharacter(int id)
+        {
+            Scene s = story.getScene(currentScene);
+            s.removeCharacter(id);
         }
 
         public List<Character> getAllCharactersInScene()
@@ -85,5 +113,41 @@ namespace WpfApplication2
             return story.getScene(currentScene).getcurSelCharName();
         }
 
+        public void setAssistanceMode(bool flag)
+        {
+            assistanceEnabled = flag;
+        }
+
+        public Boolean getAssitanceMode()
+        {
+            return assistanceEnabled;
+        }
+
+        public void removeCurrentScene()
+        {
+            story.removeScene(currentScene);
+            currentScene--;
+        }
+
+        public void createANewStory()
+        {
+            story = new Story();
+            currentScene = -1;
+        }
+
+        public void setCharacterPosition(int id, double x, double y) 
+        {
+            story.getScene(currentScene).setCharacterPos(id, x, y);   
+        }
+
+        public double getCharacterPositionX(int id)
+        {
+            return story.getScene(currentScene).getCharacterX(id);
+        }
+
+        public double getCharacterPositionY(int id)
+        {
+            return story.getScene(currentScene).getCharacterY(id);
+        }
     }
 }

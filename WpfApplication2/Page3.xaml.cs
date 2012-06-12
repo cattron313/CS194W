@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Research.Kinect.Nui;
+using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
 
 namespace WpfApplication2
@@ -24,7 +24,7 @@ namespace WpfApplication2
         bool charSelected = false;
         int curCharIndex = 0;
         public IStory del;
-        public Runtime nui;
+        public KinectSensor sensor;
         public SkeletonController currentController;
 
         public Page3()
@@ -34,7 +34,7 @@ namespace WpfApplication2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Meatwad_Images\\Meatwad.gif";
+            String path = "c:\\users\\tajah\\documents\\visual studio 2010\\Projects\\WpfApplication2\\WpfApplication2\\Meatwad_Images\\Meatwad.gif";
             curCharIndex = 0;
             //this.Layer_0.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
             charSelected = true;
@@ -48,7 +48,7 @@ namespace WpfApplication2
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\Optimusg1_Images\\Optimusg1.png";
+            String path = "c:\\users\\tajah\\documents\\visual studio 2010\\Projects\\WpfApplication2\\WpfApplication2\\Optimusg1_Images\\Optimusg1.png";
             curCharIndex = 1;
             //this.Layer_0.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
             charSelected = true;
@@ -57,7 +57,7 @@ namespace WpfApplication2
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            String path = "C:\\Users\\Alexandria\\Documents\\Expression\\Blend 4\\Projects\\WpfApplication2\\WpfApplication2\\SMoon_Images\\SMoon.png";
+            String path = "c:\\users\\tajah\\documents\\visual studio 2010\\Projects\\WpfApplication2\\WpfApplication2\\SMoon_Images\\SMoon.png";
             curCharIndex = 2;
             //this.Layer_0.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
             charSelected = true;
@@ -77,48 +77,56 @@ namespace WpfApplication2
         private void nui_SkeletonFrameReady3(object sender, SkeletonFrameReadyEventArgs e)
         {
 
-            SkeletonFrame allSkeletons = e.SkeletonFrame;
-
             //get the first tracked skeleton
-            SkeletonData skeleton = (from s in allSkeletons.Skeletons
-                                     where s.TrackingState == SkeletonTrackingState.Tracked
-                                     select s).FirstOrDefault();
+            Skeleton[] skeletons = new Skeleton[0];
 
-            if (skeleton != null)
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
             {
-                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
-                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                currentController.processSkeletonFramePage3(skeleton, this.characterSel, this);
+                if (skeletonFrame != null)
+                {
+                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                    skeletonFrame.CopySkeletonDataTo(skeletons);
+                }
+            }
+
+            if (skeletons != null && skeletons.Length != 0)
+            {
+                if (skeletons[0].TrackingState == SkeletonTrackingState.Tracked)
+                {
+                    SetEllipsePosition(leftEllipse, skeletons[0].Joints[JointType.HandLeft]);
+                    SetEllipsePosition(rightEllipse, skeletons[0].Joints[JointType.HandRight]);
+                    currentController.processSkeletonFramePage3(skeletons[0], this.characterSel, this);
+                }
             }
         }
 
-        static public float k_xMaxJointScale = .5f;
-        static public float k_yMaxJointScale = .5f;
+        static public float k_xMaxJointScale = .38f;
+        static public float k_yMaxJointScale = .38f;
 
         static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {
-            var scaledJoint = joint.ScaleTo(640, 480, k_xMaxJointScale, k_yMaxJointScale);
+            var scaledJoint = joint.ScaleTo(1366, 768, k_xMaxJointScale, k_yMaxJointScale);
 
             Canvas.SetLeft(ellipse, scaledJoint.Position.X - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
             Canvas.SetTop(ellipse, scaledJoint.Position.Y - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
             Canvas.SetZIndex(ellipse, (int)Math.Floor(scaledJoint.Position.Z * 100));
-            if (joint.ID == JointID.HandLeft || joint.ID == JointID.HandRight)
+            /*if (joint.ID == JointID.HandLeft || joint.ID == JointID.HandRight)
             {
                 byte val = (byte)(Math.Floor((joint.Position.Z - 0.8) * 255 / 2));
                 ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
-            }
+            }*/
 
             
         }
 
         private void setUpKinect(object sender, RoutedEventArgs e)
         {
-            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady3);
+            sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady3);
         }
 
         private void removeNUIEventHandler(object sender, RoutedEventArgs e)
         {
-            nui.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady3);
+            sensor.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady3);
         }
 
 	}

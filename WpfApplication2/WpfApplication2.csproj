@@ -2,13 +2,12 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ExpressionBlendVersion>4.0.20525.0</ExpressionBlendVersion>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D18A1983-B9DB-4884-8A06-9CDC2BF972B7}</ProjectGuid>
+    <ProjectGuid>{469F44F8-65EA-43A6-877B-5B7B8C75951E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <DefaultClrNameSpace>WpfApplication2</DefaultClrNameSpace>
     <RootNamespace>WpfApplication2</RootNamespace>
     <AssemblyName>WpfApplication2</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -16,10 +15,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ApplicationIcon>Application.ico</ApplicationIcon>
-    <Utf8Output>true</Utf8Output>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,7 +26,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -37,10 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Coding4Fun.Kinect.Wpf">
-      <HintPath>E:\CS247-P3\P3StarterCode FINAL\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
+    <Reference Include="Coding4Fun.Kinect.Wpf, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\newCode4Fun\Coding4Fun.Kinect.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.45, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Kinect, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -64,11 +65,32 @@
     </ApplicationDefinition>
     <Compile Include="Character.cs" />
     <Compile Include="CharacterList.cs" />
+    <Compile Include="Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page2.xaml.cs">
+      <DependentUpon>Page2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page3.xaml.cs">
       <DependentUpon>Page3.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page4.xaml.cs">
       <DependentUpon>Page4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page5.xaml.cs">
+      <DependentUpon>Page5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page6.xaml.cs">
+      <DependentUpon>Page6.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page7.xaml.cs">
+      <DependentUpon>Page7.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page8.xaml.cs">
+      <DependentUpon>Page8.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page9.xaml.cs">
+      <DependentUpon>Page9.xaml</DependentUpon>
     </Compile>
     <Compile Include="Prop.cs" />
     <Compile Include="RecordVideo.cs" />
@@ -98,66 +120,65 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Page3.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Page4.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page5.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page6.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page7.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page8.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Page9.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Page2.xaml.cs">
-      <DependentUpon>Page2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <AppDesigner Include="Properties\" />
-    <None Include="Application.ico">
-      <Visible>false</Visible>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\meiryo.ttc" />
+    <Resource Include="Fonts\meiryob.ttc" />
+    <Resource Include="Fonts\segoeui.ttf" />
+    <Resource Include="Fonts\segoeuib.ttf" />
+    <Resource Include="Fonts\segoeuii.ttf" />
+    <Resource Include="Fonts\segoeuiz.ttf" />
+    <None Include="app.config" />
+    <None Include="characters_img.psd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="B temple 1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Jungle[1].jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Wreck on amangasette.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="DXTRANSLib">
-      <Guid>{54314D1D-35FE-11D1-81A1-0000F87557DB}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>1</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="MediaPlayer">
-      <Guid>{22D6F304-B0F6-11D0-94AB-0080C74C7E95}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="SMoon_Images\head.gif" />
@@ -168,17 +189,9 @@
     <Resource Include="SMoon_Images\right_arm.gif" />
     <Resource Include="SMoon_Images\right_foot.gif" />
     <Resource Include="SMoon_Images\right_hand.gif" />
+    <Resource Include="SMoon_Images\right_knee.gif" />
+    <Resource Include="SMoon_Images\SMoon.png" />
     <Resource Include="SMoon_Images\torso.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MeatWad_Images\Meatwad.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Optimusg1_Images\right_foot.gif" />
-    <Resource Include="Optimusg1_Images\right_hand.gif" />
-    <Resource Include="Optimusg1_Images\right_knee.gif" />
-    <Resource Include="Optimusg1_Images\right_shoulder.gif" />
-    <Resource Include="Optimusg1_Images\torso.gif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Optimusg1_Images\head.gif" />
@@ -186,22 +199,97 @@
     <Resource Include="Optimusg1_Images\left_hand.gif" />
     <Resource Include="Optimusg1_Images\left_knee.gif" />
     <Resource Include="Optimusg1_Images\left_shoulder.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Optimusg1_Images\Optimusg1.png" />
+    <Resource Include="Optimusg1_Images\right_foot.gif" />
+    <Resource Include="Optimusg1_Images\right_hand.gif" />
+    <Resource Include="Optimusg1_Images\right_knee.gif" />
+    <Resource Include="Optimusg1_Images\right_shoulder.gif" />
+    <Resource Include="Optimusg1_Images\torso.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SMoon_Images\SMoon.png" />
+    <Resource Include="MeatWad_Images\Meatwad.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SMoon_Images\right_knee.gif" />
+    <Resource Include="trash2.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath32)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Resource Include="Wreck on amangasette.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="tb1.png" />
+    <Resource Include="tb2.png" />
+    <Resource Include="tb3.png" />
+    <Resource Include="tb4.png" />
+    <Resource Include="tb5.png" />
+    <Resource Include="Toybox.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="smurfette.png" />
+    <Resource Include="snow.png" />
+    <Resource Include="spongebob-squarepants.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="popeye.jpg" />
+    <Resource Include="popeye.png" />
+    <Resource Include="powerpuff_girls.jpg" />
+    <Resource Include="ppgirls.png" />
+    <Resource Include="puppet.png" />
+    <Resource Include="puppet2.png" />
+    <Resource Include="puppet3.png" />
+    <Resource Include="puppet4.png" />
+    <Resource Include="puppet5.png" />
+    <Resource Include="puppet6.png" />
+    <Resource Include="sb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="daffy.png" />
+    <Resource Include="daffy2.png" />
+    <Resource Include="daffy_duck_xx.jpg" />
+    <Resource Include="daisy_and_donald_duck.jpg" />
+    <Resource Include="donaldDuck.png" />
+    <Resource Include="forest.jpg" />
+    <Resource Include="jasmine.png" />
+    <Resource Include="Jungle[1].jpg" />
+    <Resource Include="kinectation_logo.jpg" />
+    <Resource Include="kinectation_logo1.jpg" />
+    <Resource Include="kinectation_logo2.jpg" />
+    <Resource Include="lisa.png" />
+    <Resource Include="logo.png" />
+    <Resource Include="logo2.png" />
+    <Resource Include="logo3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="characters_img.jpg" />
+    <Resource Include="characters_img.png" />
+    <Resource Include="characters_img2.jpg" />
+    <Resource Include="characters_img2.png" />
+    <Resource Include="characters_img3.png" />
+    <Resource Include="clipjasminebirdfi8.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="500full.jpg" />
+    <Resource Include="599936-snow_white1_large.jpg" />
+    <Resource Include="Application.ico" />
+    <Resource Include="B temple 1.jpg" />
+    <Resource Include="bart-simpson-08.gif" />
+    <Resource Include="bart.png" />
+    <Resource Include="bart1.png" />
+    <Resource Include="batman.jpg" />
+    <Resource Include="bg1.jpg" />
+    <Resource Include="bg2.png" />
+    <Resource Include="bg3.jpg" />
+    <Resource Include="bg4.jpg" />
+    <Resource Include="bg5.jpg" />
+    <Resource Include="Bugs-Bunny.jpg" />
+    <Resource Include="bugs.png" />
+    <Resource Include="cartoon-characters-182.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-	     Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
-	<Target Name="AfterBuild">
-	</Target>
-	-->
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

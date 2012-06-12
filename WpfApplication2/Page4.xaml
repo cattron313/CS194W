@@ -4,13 +4,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="WpfApplication2.Page4" 
       mc:Ignorable="d" 
-     Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480" Loaded="setUp" Unloaded="removeNUIEventHandler"
+     Width="1366" Height="768"
+	WindowWidth="1366" WindowHeight="768" Loaded="setUp" Unloaded="removeNUIEventHandler"
 	Title="Page4">
 
     <Canvas Name="main">
-    	<Rectangle Fill="#FFF4F4F5" Margin="146,0,139,0" Stroke="Red" StrokeThickness="7" Height="480" Width="339" />
-        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
-        <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
+        <ed:BlockArrow Fill="White" Height="113.922" Canvas.Left="8" Orientation="Left" Canvas.Top="602.74" Width="91.172" Stroke="#FFFF5D00" StrokeThickness="5" />
+        <Border BorderBrush="Red" BorderThickness="5" Height="760" Canvas.Left="442.356" Width="603"/>
+        <Rectangle Canvas.Left="8" Canvas.Top="602" Height="114" x:Name="backbutton" Width="133"/>
+        <Ellipse Canvas.Left="682.356" Canvas.Top="782.178" Height="35" x:Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="1097.521" Canvas.Top="782.178" Fill="Blue" Height="35" x:Name="leftEllipse" Stroke="Black" Width="35" />
     </Canvas>
 </Page>

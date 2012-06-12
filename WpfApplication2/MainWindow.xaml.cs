@@ -14,8 +14,9 @@ using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
-using Microsoft.Research.Kinect.Nui;
+using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
+using System.IO;
 
 namespace WpfApplication2
 {
@@ -27,12 +28,12 @@ namespace WpfApplication2
     public partial class MainWindow : Window
     {
         static StoryTimeController st;
-        static Runtime nui;
+        static KinectSensor sensor;
         static SkeletonController currentController;
 
         //Scaling constants
-        public float k_xMaxJointScale = .5f;
-        public float k_yMaxJointScale = .5f;
+        public float k_xMaxJointScale = .3f;
+        public float k_yMaxJointScale = .3f;
 
         public MainWindow()
         {
@@ -55,72 +56,115 @@ namespace WpfApplication2
             if (((Frame)sender).Source.ToString() == "WpfApplication2;component/Page1.xaml")
             {
                 ((Page1)e.Content).del = st;
-                ((Page1)e.Content).nui = nui;
+                ((Page1)e.Content).sensor = sensor;
                 ((Page1)e.Content).currentController = currentController;
             }
             else if (((Frame)sender).Source.ToString() == "Page2.xaml")
             {
                 ((Page2)e.Content).del = st;
-                ((Page2)e.Content).nui = nui;
+                ((Page2)e.Content).sensor = sensor;
                 ((Page2)e.Content).currentController = currentController;
             }
             else if (((Frame)sender).Source.ToString() == "Page3.xaml")
             {
                 ((Page3)e.Content).del = st;
-                ((Page3)e.Content).nui = nui;
+                ((Page3)e.Content).sensor = sensor;
                 ((Page3)e.Content).currentController = currentController;
             }
             else if (((Frame)sender).Source.ToString() == "Page4.xaml")
             {
                 ((Page4)e.Content).del = st;
-                ((Page4)e.Content).nui = nui;
+                ((Page4)e.Content).sensor = sensor;
                 ((Page4)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "WpfApplication2;component/Page5.xaml")
+            {
+                ((Page5)e.Content).del = st;
+                ((Page5)e.Content).sensor = sensor;
+                ((Page5)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "Page6.xaml")
+            {
+                ((Page6)e.Content).del = st;
+                ((Page6)e.Content).sensor = sensor;
+                ((Page6)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "Page7.xaml")
+            {
+                ((Page7)e.Content).del = st;
+                ((Page7)e.Content).sensor = sensor;
+                ((Page7)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "Page8.xaml")
+            {
+                ((Page8)e.Content).del = st;
+                ((Page8)e.Content).sensor = sensor;
+                ((Page8)e.Content).currentController = currentController;
+            }
+            else if (((Frame)sender).Source.ToString() == "WpfApplication2;component/Page9.xaml")
+            {
+                ((Page9)e.Content).del = st;
+                ((Page9)e.Content).sensor = sensor;
+                ((Page9)e.Content).currentController = currentController;
             }
         }
 
         private void SetupKinect()
         {
-            if (Runtime.Kinects.Count == 0)
+            foreach (var potentialSensor in KinectSensor.KinectSensors)
+            {
+                if (potentialSensor.Status == KinectStatus.Connected)
+                {
+                    sensor = potentialSensor;
+                    break;
+                }
+            }
+
+            if (null != sensor)
+            {
+                // Turn on the skeleton stream to receive skeleton frames
+                sensor.SkeletonStream.Enable();
+
+                // Add an event handler to be called whenever there is new color frame data
+                //sensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
+                sensor.SkeletonStream.Enable(new TransformSmoothParameters()
+                {
+                    Correction = 0.3f, JitterRadius = 0.7f, MaxDeviationRadius = 0.2f, Smoothing = 0.3f, Prediction = 0.4f
+                });
+                // Start the sensor!
+                try
+                {
+                    sensor.Start();
+
+                }
+                catch (IOException)
+                {
+                    sensor = null;
+                }
+            }
+
+            if (null == sensor)
             {
                 this.Title = "No Kinect connected";
-            }
-            else
-            {
-                //use first Kinect
-                nui = Runtime.Kinects[0];
-
-                //Initialize to do skeletal tracking
-                nui.Initialize(RuntimeOptions.UseSkeletalTracking | RuntimeOptions.UseColor | RuntimeOptions.UseDepthAndPlayerIndex);
-
-                //add event to receive skeleton data
-                //nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
-
-                //add event to receive video data
-                //nui.VideoFrameReady += new EventHandler<ImageFrameReadyEventArgs>(nui_VideoFrameReady);
-
-                //to experiment, toggle TransformSmooth between true & false and play with parameters            
-                nui.SkeletonEngine.TransformSmooth = true;
-                TransformSmoothParameters parameters = new TransformSmoothParameters();
-                // parameters used to smooth the skeleton data
-                parameters.Smoothing = 0.3f;
-                parameters.Correction = 0.3f;
-                parameters.Prediction = 0.4f;
-                parameters.JitterRadius = 0.7f;
-                parameters.MaxDeviationRadius = 0.2f;
-                nui.SkeletonEngine.SmoothParameters = parameters;
-
-                //Open the video stream
-                //nui.VideoStream.Open(ImageStreamType.Video, 2, ImageResolution.Resolution640x480, ImageType.Color);
-
-                //Force video to the background
-                //Canvas.SetZIndex(image1, -10000);
             }
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
             //Cleanup
-            nui.Uninitialize();
+            if (null != sensor)
+            {
+                sensor.Stop();
+            }
+        }
+
+        private void WindowCloseOnEsc_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            /*if (e.Key.ToString().Equals("Escape"))
+            {
+                this.Close();
+                nui.Uninitialize();
+            }*/
         }
 
     }

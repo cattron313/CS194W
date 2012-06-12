@@ -27,6 +27,13 @@ namespace WpfApplication2
             curSelCharName = "";
         }
 
+        public void setSetting(string p)
+        {
+            Setting newLoc = new Setting(p);
+            location = newLoc;
+            //return location;
+        }
+
         public Setting getSetting()
         {
             return location;
@@ -35,6 +42,17 @@ namespace WpfApplication2
         internal void addCharacter(Character name)
         {
             characterList.Add(name);
+        }
+
+        internal void removeCharacter(int id)
+        {
+          /*  for (int i = 0; i < characterList.Count(); i++)
+                if (characterList.ElementAt(i).getName().Equals(name.getName()))
+                {
+                    characterList.RemoveAt(i);
+                    return;
+                }*/
+            characterList.RemoveAt(id - 1);
         }
 
         internal List<Character> getAllCharacters()
@@ -50,6 +68,20 @@ namespace WpfApplication2
         public string getcurSelCharName()
         {
             return curSelCharName;
+        }
+
+        public void setCharacterPos(int id, double x, double y)
+        {
+            characterList.ElementAt(id-1).setPosition(x, y);
+        }
+
+        public double getCharacterX(int id)
+        {
+            return characterList.ElementAt(id-1).getXPos();
+        }
+        public double getCharacterY(int id)
+        {
+            return characterList.ElementAt(id-1).getYPos();
         }
     }
 }

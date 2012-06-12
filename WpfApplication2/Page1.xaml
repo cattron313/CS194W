@@ -1,62 +1,44 @@
-﻿<Page
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+﻿<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
 	x:Class="WpfApplication2.Page1"
 	x:Name="Page"
 	WindowTitle="Page"
 	FlowDirection="LeftToRight"
-	Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480" Loaded="setUpKinect" Unloaded="removeNUIEventHandler">
-	<Page.Resources>
-		<Storyboard x:Key="ShipwreckHover">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="ShipB">
-				<EasingColorKeyFrame KeyTime="0" Value="#FFFFE640"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Key="JungleHover">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="JungleB">
-				<EasingColorKeyFrame KeyTime="0" Value="#FFFFE640"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard x:Key="TempleHover">
-			<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="TempleB">
-				<EasingColorKeyFrame KeyTime="0" Value="#FFFFE640"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
+	Width="1366" Height="768"
+	WindowWidth="1366" WindowHeight="768" Loaded="setUpKinect" Unloaded="removeNUIEventHandler">
+    <Page.Background >
+        <ImageBrush ImageSource= "c:\users\tajah\documents\visual studio 2010\Projects\WpfApplication2\WpfApplication2\bg3.jpg" >
+        </ImageBrush >
+    </Page.Background >
+    <Page.Resources>
+		<Storyboard x:Key="ShipwreckHover"/>
+		<Storyboard x:Key="JungleHover"/>
+		<Storyboard x:Key="TempleHover"/>
 	</Page.Resources>
-	<Page.Triggers>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="ShipB">
-			<BeginStoryboard x:Name="ShipwreckHover_BeginStoryboard" Storyboard="{StaticResource ShipwreckHover}"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="ShipB">
-			<StopStoryboard BeginStoryboardName="ShipwreckHover_BeginStoryboard"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="JungleB">
-			<BeginStoryboard x:Name="JungleHover_BeginStoryboard" Storyboard="{StaticResource JungleHover}"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="JungleB">
-			<StopStoryboard BeginStoryboardName="JungleHover_BeginStoryboard"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseEnter" SourceName="TempleB">
-			<BeginStoryboard x:Name="TempleHover_BeginStoryboard" Storyboard="{StaticResource TempleHover}"/>
-		</EventTrigger>
-		<EventTrigger RoutedEvent="Mouse.MouseLeave" SourceName="TempleB">
-			<StopStoryboard BeginStoryboardName="TempleHover_BeginStoryboard"/>
-		</EventTrigger>
-	</Page.Triggers>
 
-    <Canvas Name="MainCanvas" Height="480" Width="640">
-        <TextBlock Height="93" Margin="95,20,95,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center" Width="390" Canvas.Left="29" Canvas.Top="-29"><Run Text="Pick A Setting"/><LineBreak/></TextBlock>
-        <Border x:Name="JungleB" BorderBrush="Black" BorderThickness="5" Height="122.5" Canvas.Left="423" Canvas.Top="119" Width="183.327">
-            <Image x:Name="Jungle" Margin="0,0,-0.094,-0.25" Source="Jungle[1].jpg" Stretch="Fill" MouseUp="selectSetting"/>
-        </Border>
-        <Border x:Name="ShipB" BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Left" Width="160" Canvas.Left="45" Canvas.Top="119">
-            <Image x:Name="Shipwreck" Margin="0,0,0.049,-0.052" Source="Wreck on amangasette.jpg" Stretch="Fill" MouseUp="selectSetting"/>
-        </Border>
-        <Border x:Name="TempleB" BorderBrush="Black" BorderThickness="5" HorizontalAlignment="Right" Width="160" Canvas.Left="238" Canvas.Top="119">
-            <Image x:Name="Temple" Source="/WpfApplication2;component/B%20temple%201.jpg" Stretch="Fill" MouseUp="selectSetting"/>
-        </Border>
-        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
-        <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
+    <Canvas x:Name="MainCanvas" Height="480" Width="640">
+        <TextBlock Height="93" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="64" TextAlignment="Center" Width="450" Canvas.Left="105.564" Canvas.Top="-114.922" FontWeight="Bold" Foreground="White" Background="#FFEF5938"><Run Text="Pick A Setting"/><LineBreak/></TextBlock>
+        <Image x:Name="Jungle1" Source="Jungle[1].jpg" Stretch="Fill" MouseUp="selectSetting" Height="247.286" Canvas.Left="581" Canvas.Top="44.542" Width="391.945" OpacityMask="Black">
+        	<Image.Effect>
+        		<DropShadowEffect/>
+        	</Image.Effect>
+        </Image>
+        <Image x:Name="Shipwreck1" Source="Wreck on amangasette.jpg" Stretch="Fill" MouseUp="selectSetting" Height="247.926" Canvas.Left="-327" Canvas.Top="44.792" Width="391.802">
+        	<Image.Effect>
+        		<DropShadowEffect/>
+        	</Image.Effect>
+        </Image>
+        <Image x:Name="Temple2" Source="/WpfApplication2;component/B%20temple%201.jpg" Stretch="Fill" MouseUp="selectSetting" Height="247.036" Canvas.Left="105.564" Canvas.Top="44.792" Width="391.851">
+        	<Image.Effect>
+        		<DropShadowEffect/>
+        	</Image.Effect>
+        </Image>
+    	 <Rectangle Height="108.834" Canvas.Top="95" Width="71.309" StrokeThickness="2" Canvas.Left="-425"/>
+        <Rectangle Height="108.834" Canvas.Left="997" Canvas.Top="95" Width="71.309"/>
+    	 <Rectangle x:Name="Shipwreck" Height="248.176" Canvas.Left="-327" Canvas.Top="44.542" Width="391.802"/>
+        <Rectangle x:Name="Temple" Height="248.176" Canvas.Left="105.564" Canvas.Top="44.542" Width="391.851"/>
+        <Rectangle x:Name="Jungle" Height="248.176" Canvas.Left="581" Canvas.Top="44.542" Width="391.945"/>
+        <Ellipse Canvas.Left="170" Canvas.Top="738.691" Height="35" x:Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="770.325" Canvas.Top="738.691" Fill="Blue" Height="35" x:Name="leftEllipse" Stroke="Black" Width="35" />
+
     </Canvas>
 </Page>

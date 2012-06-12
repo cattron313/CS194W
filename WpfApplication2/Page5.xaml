@@ -1,0 +1,37 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="WpfApplication2.Page5"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Width="1366" Height="768" WindowWidth="1366" WindowHeight="768" Loaded="setUpKinect" Unloaded="removeNUIEventHandler">
+    
+      <Page.Background >
+        <ImageBrush ImageSource= "bg3.jpg" >
+            </ImageBrush >
+            </Page.Background >
+
+
+    <Canvas x:Name="controls" Height="768" Width="1366">
+        <Rectangle Height="71.295" Stroke="#FFB8340C" x:Name="Start" VerticalAlignment="Top" Canvas.Left="630" Canvas.Top="116" Width="173.91" Fill="#FFEF5938" />
+        <Label Content="Start" VerticalAlignment="Top" Height="72.295" FontSize="37.333" Foreground="White" Canvas.Left="668" Canvas.Top="126" Width="93.101" FontWeight="Bold" FontFamily="Aharoni" />
+        <Image Canvas.Top="-541.241" Height="309.542" Source="daffy2.png" Stretch="Fill" Width="267.009" ImageFailed="Image_ImageFailed_1" Canvas.Left="89.276" />
+        <Image Canvas.Left="1084" Canvas.Top="167" Height="533.397" Source="snow.png" Stretch="Fill" Width="375.915" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="126" Canvas.Top="176" Height="400.841" Source="popeye.png" Stretch="Fill" Width="282.5" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="-69.917" Height="540.083" Source="jasmine.png" Stretch="Fill" Width="271.75" ImageFailed="Image_ImageFailed_1" Canvas.Top="36.758" />
+        <Image Canvas.Top="234" Height="416" Source="daffy.png" Stretch="Fill" Width="287.276" ImageFailed="Image_ImageFailed_1" Canvas.Left="54" />
+        <Image Canvas.Left="892" Canvas.Top="290.512" Height="286.329" Source="lisa.png" Stretch="Fill" Width="166.687" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="588.455" Canvas.Top="-394.757" Height="242" Source="sb.png" Stretch="Fill" Width="274" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="998" Canvas.Top="321.397" Height="388" Source="donaldDuck.png" Stretch="Fill" Width="404.929" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="54" Canvas.Top="-332" Height="311.692" Source="ppgirls.png" Stretch="Fill" Width="442" ImageFailed="Image_ImageFailed_1" />
+        <Image Source="logo3.png" Stretch="Fill" Canvas.Left="205.833" Canvas.Top="107.397" Height="593" Width="1021" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="54" Canvas.Top="450" Height="310" Source="smurfette.png" Stretch="Fill" Width="225" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="892" Canvas.Top="450" Height="355.333" Source="bugs.png" Stretch="Fill" Width="478.25" ImageFailed="Image_ImageFailed_1" />
+        <Image Canvas.Left="552" Canvas.Top="492" Height="276" Source="bart.png" Stretch="Fill" Width="336" ImageFailed="Image_ImageFailed_1" />
+        <Ellipse Canvas.Left="513" Canvas.Top="615" Height="35" x:Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="888" Canvas.Top="674.397" Fill="Blue" Height="35" x:Name="leftEllipse" Stroke="Black" Width="35" />
+      
+    </Canvas>
+</Page>

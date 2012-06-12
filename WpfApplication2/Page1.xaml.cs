@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Microsoft.Research.Kinect.Nui;
+using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
 
 namespace WpfApplication2
@@ -18,7 +18,7 @@ namespace WpfApplication2
 	public partial class Page1
 	{
         public IStory del;
-        public Runtime nui;
+        public KinectSensor sensor;
         public SkeletonController currentController;
 
 		public Page1()
@@ -41,47 +41,55 @@ namespace WpfApplication2
     
         private void nui_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-
-            SkeletonFrame allSkeletons = e.SkeletonFrame;
-
             //get the first tracked skeleton
-            SkeletonData skeleton = (from s in allSkeletons.Skeletons
-                                     where s.TrackingState == SkeletonTrackingState.Tracked
-                                     select s).FirstOrDefault();
+            Skeleton[] skeletons = new Skeleton[0];
 
-            if (skeleton != null)
+
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
             {
-                SetEllipsePosition(leftEllipse, skeleton.Joints[JointID.HandLeft]);
-                SetEllipsePosition(rightEllipse, skeleton.Joints[JointID.HandRight]);
-                currentController.processSkeletonFramePage1(skeleton, this.MainCanvas);
+                if (skeletonFrame != null)
+                {
+                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                    skeletonFrame.CopySkeletonDataTo(skeletons);
+                }
+            }
+
+            if (skeletons != null && skeletons.Length != 0) {
+                if(skeletons[0].TrackingState == SkeletonTrackingState.Tracked)
+                {
+                    SetEllipsePosition(leftEllipse, skeletons[0].Joints[JointType.HandLeft]);
+                    SetEllipsePosition(rightEllipse, skeletons[0].Joints[JointType.HandRight]);
+                    currentController.processSkeletonFramePage1(skeletons[0], this.MainCanvas);
+                }
             }
         }
 
-        static public float k_xMaxJointScale = .5f;
-        static public float k_yMaxJointScale = .5f;
+        static public float k_xMaxJointScale = .38f;
+        static public float k_yMaxJointScale = .38f;
 
         static private void SetEllipsePosition(Ellipse ellipse, Joint joint)
         {
-            var scaledJoint = joint.ScaleTo(640, 480, k_xMaxJointScale, k_yMaxJointScale);
+            var scaledJoint = joint.ScaleTo(1366, 768, k_xMaxJointScale, k_yMaxJointScale);
 
             Canvas.SetLeft(ellipse, scaledJoint.Position.X - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
             Canvas.SetTop(ellipse, scaledJoint.Position.Y - (double)ellipse.GetValue(Canvas.WidthProperty) / 2);
             Canvas.SetZIndex(ellipse, (int)-Math.Floor(scaledJoint.Position.Z * 100));
+            /*
             if (joint.ID == JointID.HandLeft || joint.ID == JointID.HandRight)
             {
                 byte val = (byte)(Math.Floor((joint.Position.Z - 0.8) * 255 / 2));
                 ellipse.Fill = new SolidColorBrush(System.Windows.Media.Color.FromRgb(val, val, val));
-            }
+            }*/
         }
 
         private void setUpKinect(object sender, RoutedEventArgs e)
         {
-            nui.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+            sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
         }
 
         private void removeNUIEventHandler(object sender, RoutedEventArgs e)
         {
-            nui.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
+            sensor.SkeletonFrameReady -= new EventHandler<SkeletonFrameReadyEventArgs>(nui_SkeletonFrameReady);
         }
 
 

@@ -5,24 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" x:Class="WpfApplication2.Page3" 
       mc:Ignorable="d" 
-     Width="640" Height="480"
-	WindowWidth="640" WindowHeight="480" Loaded="setUpKinect" Unloaded="removeNUIEventHandler"
+     Width="1366" Height="768"
+	WindowWidth="1366" WindowHeight="768" Loaded="setUpKinect" Unloaded="removeNUIEventHandler"
 	Title="Page3">
-	<Canvas x:Name="characterSel">
-		<Border x:Name="Meatwad" BorderBrush="Black" BorderThickness="1" Height="53" Canvas.Left="32" Canvas.Top="127" Width="137" Background="#FFB2A8DE">
-			<Label Content="Meatwad" FontSize="21.333"/>
-		</Border>
-        <Border x:Name="Optimus" BorderBrush="Black" BorderThickness="1" Height="53" Canvas.Left="32" Canvas.Top="219" Width="137" Background="#FFB2A8DE">
-			<Label Content="Optimus" FontSize="21.333"/>
-		</Border>
-        <Border x:Name="SailorMoon" BorderBrush="Black" BorderThickness="1" Height="53" Canvas.Left="31" Canvas.Top="312" Width="139" Background="#FFB2A8DE">
-			<Label Content="Sailor Moon" FontSize="21.333"/>
-		</Border>
-        <Image x:Name="curCharact" Height="236" Canvas.Left="191" Canvas.Top="129" Width="318"/>
-        <Border Name="Done" BorderBrush="Black" BorderThickness="1" Height="52" Canvas.Left="485" Canvas.Top="218" Width="99" Background="#FFB2A8DE">
-        	<Label Content="Done" FontSize="21.333"/>
-        </Border>
-        <Ellipse Canvas.Left="269" Canvas.Top="363" Height="35" Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
-        <Ellipse Canvas.Left="428" Canvas.Top="363" Fill="Blue" Height="35" Name="leftEllipse" Stroke="Black" Width="35" />
-	</Canvas>
+
+    <Page.Background >
+        <ImageBrush ImageSource= "c:\users\tajah\documents\visual studio 2010\Projects\WpfApplication2\WpfApplication2\Toybox.jpg">
+        </ImageBrush >
+    </Page.Background >
+
+    <Canvas x:Name="characterSel">
+        <Rectangle x:Name="Done1" Height="97" Canvas.Left="1020.584" Stroke="Black" Canvas.Top="614.071" Width="267" Fill="#FFEF5938"/>
+        <Label Content="Done" FontSize="48" FontWeight="ExtraBold" Foreground="White" Width="193" Height="95" Canvas.Left="1094.584" Canvas.Top="614.071" d:LayoutOverrides="Width" />
+        <Image x:Name="curCharact" Height="652" Width="537" Canvas.Left="403.119" Canvas.Top="57.071"/>
+        <Rectangle x:Name="Meatwad1" Height="110" Canvas.Left="32" Canvas.Top="186" Width="301" Stroke="Black" Fill="#FFEF5938"/>
+        <Label Content="Meatwad" FontSize="48" Foreground="White" FontWeight="Bold" Height="131" Canvas.Left="64" Canvas.Top="202" Width="255"/>
+        <Rectangle x:Name="Optimus1" Height="110" Canvas.Left="32" Canvas.Top="337" Width="301" Fill="#FFEF5938" Stroke="Black"/>
+        <Label Content="Optimus" FontSize="48" FontWeight="Bold" Foreground="White" Height="108" Canvas.Left="64" Canvas.Top="353.5" Width="299"/>
+        <Rectangle x:Name="SailorMoon1" Height="110" Canvas.Left="32" Canvas.Top="495" Width="301" Fill="#FFEF5938" Stroke="Black"/>
+        <Label Content="Sailor Moon" FontSize="48" FontWeight="Bold" Foreground="White" Height="108" Canvas.Left="34" Canvas.Top="509.5" Width="299"/>
+        <Ellipse Canvas.Left="663.475" Canvas.Top="931.232" Height="35" x:Name="rightEllipse" Stroke="Black" Width="35" Fill="Blue" DataContext="{Binding}" />
+        <Ellipse Canvas.Left="845.956" Canvas.Top="931.232" Fill="Blue" Height="35" x:Name="leftEllipse" Stroke="Black" Width="35" />
+
+    </Canvas>
 </Page>

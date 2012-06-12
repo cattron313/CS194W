@@ -30,6 +30,11 @@ namespace WpfApplication2
             sceneList.Add(newScene);
         }
 
+        public void removeScene(int index)
+        {
+            sceneList.RemoveAt(index);
+        }
+
 
     }
 }
